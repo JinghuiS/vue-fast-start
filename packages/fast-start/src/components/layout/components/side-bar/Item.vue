@@ -11,19 +11,19 @@ defineProps<{
 }>()
 </script>
 <template>
-    <For :echo="items" row-key="path" v-slot="{ path, children, name }">
-        <If :when="children && children.length > 0">
-            <ElSubMenu class="fast-start-menu-item-title" :index="path">
+    <For :echo="items" row-key="path" v-slot="{ item }">
+        <If :when="item.children && item.children.length > 0">
+            <ElSubMenu class="fast-start-menu-item-title" :index="item.path">
                 <template #title>
-                    {{ name }}
+                    {{ item.name }}
                 </template>
 
-                <FsSideBarItem :items="children" />
+                <FsSideBarItem :items="item.children" />
             </ElSubMenu>
 
             <template #fallback>
-                <ElMenuItem class="fast-start-menu-item" :index="path">
-                    {{ name }}
+                <ElMenuItem class="fast-start-menu-item" :index="item.path">
+                    {{ item.name }}
                 </ElMenuItem>
             </template>
         </If>
