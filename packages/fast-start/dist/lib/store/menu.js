@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const o=require("vue");function l(e){let t=!1,n;const r=o.effectScope(!0);return(...u)=>(t||(n=r.run(()=>e(...u)),t=!0),n)}typeof WorkerGlobalScope<"u"&&globalThis instanceof WorkerGlobalScope;const a=l(()=>{const e=o.ref({menu:[]});function t(n){e.value.menu=n}return{state:o.readonly(e),setMenu:t}});exports.useMenuStore=a;
+//# sourceMappingURL=menu.js.map

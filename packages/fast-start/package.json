@@ -1,0 +1,84 @@
+{
+    "name": "@fast-start/core",
+    "version": "0.0.0",
+    "main": "dist/lib/index.js",
+    "module": "dist/es/index.js",
+    "types": "dist/es/index.d.ts",
+    "type": "module",
+    "files": [
+        "dist/",
+        "package.json"
+    ],
+    "exports": {
+        ".": {
+            "types": "./dist/es/index.d.ts",
+            "import": "./dist/es/index.mjs",
+            "require": "./dist/lib/index.js"
+        },
+        "./es": {
+            "types": "./dist/es/index.d.ts",
+            "import": "./dist/es/index.mjs"
+        },
+        "./lib": {
+            "types": "./dist/lib/index.d.ts",
+            "require": "./dist/lib/index.js"
+        },
+        "./es/*.mjs": {
+            "types": "./dist/es/*.d.ts",
+            "import": "./dist/es/*.mjs"
+        },
+        "./es/*": {
+            "types": [
+                "./dist/es/*.d.ts",
+                "./dist/es/*/index.d.ts"
+            ],
+            "import": "./dist/es/*.mjs"
+        },
+        "./lib/*.js": {
+            "types": "./dist/lib/*.d.ts",
+            "require": "./dist/lib/*.js"
+        },
+        "./lib/*": {
+            "types": [
+                "./dist/lib/*.d.ts",
+                "./dist/lib/*/index.d.ts"
+            ],
+            "require": "./dist/lib/*.js"
+        },
+        "./*": "./dist/*"
+    },
+    "keywords": [
+        "component library",
+        "element-plus",
+        "vue"
+    ],
+    "scripts": {
+        "dev": "vite",
+        "build": "rimraf dist && vue-tsc -p tsconfig.esm.json  && node build.cjs  && vite build --emptyOutDir false",
+        "preview": "vite preview"
+    },
+    "style": "dist/style.css",
+    "sideEffects": [
+        "dist/*",
+        "dist/es/components/*/style/*",
+        "dist/lib/components/*/style/*",
+        "dist/es/components/**/*.css",
+        "dist/lib/components/**/*.css"
+    ],
+    "peerDependencies": {
+        "vue": "^3.4.21",
+        "element-plus": "^2.3.4",
+        "vue-router": "4"
+    },
+    "dependencies": {
+        "@fast-start/control-flow": "workspace:^",
+        "@vueuse/core": "^10.9.0",
+        "@vueuse/router": "^10.9.0",
+        "@vueuse/shared": "^10.9.0",
+        "axios": "^1.6.8",
+        "element-plus": "^2.6.3",
+        "overlayscrollbars": "^2.7.0",
+        "overlayscrollbars-vue": "^0.5.9",
+        "vue-router": "4"
+    }
+}

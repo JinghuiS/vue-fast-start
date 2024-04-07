@@ -1,0 +1,2 @@
+"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const e=require("vue"),o=require("vue-router"),t=Symbol("RESOURCE_CONTEXT"),n=r=>e.provide(t,r),u=e.defineComponent({name:"FsResource",__name:"Resource",props:{name:{}},setup(r){return n({name:r.name}),(s,a)=>(e.openBlock(),e.createBlock(e.unref(o.RouterView)))}});exports.default=u;
+//# sourceMappingURL=Resource.js.map

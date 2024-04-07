@@ -1,0 +1,2 @@
+"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const e=require("vue"),t=require("element-plus"),r=require("vue-router"),n=60,u=e.defineComponent({__name:"Main",setup(o){return(a,l)=>(e.openBlock(),e.createBlock(e.unref(t.ElMain),{class:"fast-start-layout-main",style:e.normalizeStyle({height:`calc(100vh - ${e.unref(n)}px) `})},{default:e.withCtx(()=>[e.createVNode(e.unref(r.RouterView))]),_:1},8,["style"]))}});exports.default=u;
+//# sourceMappingURL=Main.js.map

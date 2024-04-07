@@ -1,0 +1,30 @@
+{
+    "extends": "./tsconfig.json",
+    "exclude": [
+        "./**/*.spec.*",
+        "./**/_stories/.*",
+        "./**/_stories/.*",
+        "./**/__stories__/.*",
+        "./main.ts",
+        "../script/*",
+        "./Comp1",
+        "./App.tsx",
+        "./**/__test__"
+    ],
+    "compilerOptions": {
+        "emitDeclarationOnly": true,
+        "declaration": true,
+        "declarationDir": "dist/es",
+        "rootDir": "./src",
+        "strictNullChecks": false,
+        "module": "ES6",
+        "target": "ES6",
+        "jsx": "preserve",
+        "types": ["vite/client", "node"],
+        "noImplicitAny": false,
+        // preserveSymlinks: true,
+        "skipLibCheck": true
+        // noImplicitAny: false
+    },
+    "include": ["./src/**/*.ts", "./src/**/*.d.ts", "./src/**/*.vue"]
+}

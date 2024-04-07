@@ -1,0 +1,33 @@
+{
+    "name": "@fast-start/control-flow",
+    "version": "0.0.0",
+    "main": "./dist/lib/index.js",
+    "module": "./dist/es/index.js",
+    "types": "./dist/es/index.d.ts",
+    "type": "module",
+    "keywords": [
+        "control flow",
+        "component library",
+        "vue"
+    ],
+    "files": [
+        "dist/",
+        "CHANGELOG.md",
+        "package.json"
+    ],
+    "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "dev": "vite",
+        "build": "rimraf dist && vue-tsc -p tsconfig.esm.json  && node build.cjs  && vite build --emptyOutDir false",
+        "preview": "vite preview"
+    },
+    "peerDependencies": {
+        "vue": "^3.4.21"
+    },
+    "sideEffects": [
+        "./src/index.ts"
+    ]
+}

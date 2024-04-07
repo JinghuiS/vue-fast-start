@@ -1,0 +1,19 @@
+{
+    "extends": "@vue/tsconfig/tsconfig.dom.json",
+    "include": [
+        "env.d.ts",
+        "src/**/*",
+        "src/**/*.vue"
+        // "../packages/fast-start/index.ts",
+        // "../packages/fast-start-control-flow/index.ts"
+    ],
+    "exclude": ["src/**/__tests__/*"],
+    "compilerOptions": {
+        "composite": true,
+        "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+        "paths": {
+            "@/*": ["./src/*"]
+        },
+        "types": ["element-plus/global"]
+    }
+}

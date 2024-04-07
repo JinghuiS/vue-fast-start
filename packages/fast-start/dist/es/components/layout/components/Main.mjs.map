@@ -1,0 +1,1 @@
+{"version":3,"file":"Main.mjs","sources":["../../../../../src/components/layout/consts.ts"],"sourcesContent":["export const HEADER_HIGHT = 60\nexport const SIDE_BAR_WIDTH = 240\n"],"names":["HEADER_HIGHT"],"mappings":";;;AAAO,MAAMA,IAAe;;;;;;;;;;;;;;;;;"}
