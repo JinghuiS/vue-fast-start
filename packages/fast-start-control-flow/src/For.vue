@@ -11,18 +11,14 @@ const props = defineProps<{
     rowKey: keyof T[number]
 }>()
 
-function itemType(item: T[number]) {
-    return item as T[number]
-}
-
 const echoType = computed<any[]>(() => {
     return props.echo
 })
 </script>
 
 <template>
-    <template v-for="item in echo" :key="rowKey">
-        <slot v-bind="itemType(item)" />
+    <template v-for="(item, index) in echo as T" :key="rowKey">
+        <slot :item="item" :index="index" />
     </template>
     <If :when="!echoType || !echoType.length || echoType.length === 0">
         <slot name="fallback" />

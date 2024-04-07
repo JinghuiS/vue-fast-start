@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { FastStars, useMenuStore, type FSMenuType } from "@fast-start/core"
-import { If } from "@fast-start/control-flow"
+import { If, For } from "@fast-start/control-flow"
 import { ref } from "vue"
 type AType = "a" | "b" | "c"
 const show = ref(true)
