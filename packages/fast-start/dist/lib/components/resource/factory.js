@@ -1,2 +1,0 @@
-"use strict";Object.defineProperty(exports,Symbol.toStringTag,{value:"Module"});const r=require("vue"),o=require("vue-router"),n=Symbol("RESOURCE_CONTEXT"),c=e=>r.provide(n,e),s=r.defineComponent({name:"FsResource",__name:"Resource",props:{name:{}},setup(e){return c({name:e.name}),(m,p)=>(r.openBlock(),r.createBlock(r.unref(o.RouterView)))}}),a=e=>[{path:`/${e.name}`,name:e.name,component:s,props:{name:e.name},children:[{path:"",name:`${e.name}-list`,component:e.listView}]}],u=e=>({routes:a(e)});exports.createResourceFactory=u;
-//# sourceMappingURL=factory.js.map

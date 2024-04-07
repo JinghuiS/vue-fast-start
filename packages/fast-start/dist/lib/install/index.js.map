@@ -1,1 +1,0 @@
-{"version":3,"file":"index.js","sources":["../../../src/install/index.ts"],"sourcesContent":["import \"overlayscrollbars/styles/overlayscrollbars.css\"\n\nexport const FastStartCore = () => {\n    return {\n        install: () => {}\n    }\n}\n"],"names":["FastStartCore"],"mappings":"gFAEO,MAAMA,EAAgB,KAClB,CACH,QAAS,IAAM,CAAC,CAAA"}

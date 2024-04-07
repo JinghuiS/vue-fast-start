@@ -1,2 +1,0 @@
-"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const e=require("vue"),t=require("element-plus"),r=60,a=e.defineComponent({__name:"Header",setup(l){return(n,o)=>(e.openBlock(),e.createBlock(e.unref(t.ElHeader),{class:"fast-start-layout-header",style:e.normalizeStyle({height:e.unref(r)})},{default:e.withCtx(()=>[e.createTextVNode(" header ")]),_:1},8,["style"]))}});exports.default=a;
-//# sourceMappingURL=Header.js.map

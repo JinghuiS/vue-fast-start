@@ -1,2 +1,0 @@
-"use strict";Object.defineProperties(exports,{__esModule:{value:!0},[Symbol.toStringTag]:{value:"Module"}});const n=require("vue"),t=n.defineComponent({name:"If",__name:"If",props:{when:{type:[null,Boolean]}},setup(l){const r=e=>e;return(e,o)=>e.when?n.renderSlot(e.$slots,"default",{key:0,value:r(e.when)}):n.renderSlot(e.$slots,"fallback",{key:1})}});exports.default=t;
-//# sourceMappingURL=If.js.map
