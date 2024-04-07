@@ -1,5 +1,11 @@
 # @fast-start/control-flow
 
+## 0.2.0
+
+### Minor Changes
+
+-   For component Writing method change
+
 ## 0.1.0
 
 ### Minor Changes
