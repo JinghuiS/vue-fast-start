@@ -1,20 +1,22 @@
 {
+    "author": "Jinghui_S",
+    "private": true,
     "name": "fast-start",
     "version": "1.0.0",
     "description": "",
     "main": "index.js",
     "scripts": {
         "demo": "pnpm -F demo dev",
-        "clear": "rimraf 'packages/*/{lib,node_modules}' && rimraf node_modules",
+        "clear": "rimraf 'packages/*/{lib,node_modules}'",
         "preinstall": "npx only-allow pnpm",
         "build": "pnpm --filter=@fast-start/* run build",
         "change": "pnpm changeset",
         "version": "pnpm changeset version",
         "publish": "pnpm changeset publish",
-        "build:publish": "pnpm build & pnpm publish -r"
+        "chgset": "pnpm change && pnpm version",
+        "build:publish": "pnpm build && pnpm clear && pnpm publish -r"
     },
     "keywords": [],
-    "author": "",
     "license": "ISC",
     "dependencies": {
         "gulp": "^5.0.0",

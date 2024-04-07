@@ -1,4 +1,6 @@
 {
+    "author": "Jinghui_S",
+    "description": "vue control flow component library",
     "name": "@fast-start/control-flow",
     "version": "0.0.0",
     "main": "./dist/lib/index.js",
@@ -19,6 +21,15 @@
     "publishConfig": {
         "access": "public"
     },
+    "homepage": "https://github.com/JinghuiS/vue-fast-start",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/JinghuiS/vue-fast-start"
+    },
+    "bugs": {
+        "url": "https://github.com/JinghuiS/vue-fast-start/issues",
+        "email": "1292077619@qq.com"
+    },
     "scripts": {
         "dev": "vite",
         "build": "rimraf dist && vue-tsc -p tsconfig.esm.json  && node build.cjs  && vite build --emptyOutDir false",
@@ -28,6 +39,7 @@
         "vue": "^3.4.21"
     },
     "sideEffects": [
-        "./src/index.ts"
+        "./src/index.ts",
+        "./dist/fast-start-control-flow.js"
     ]
 }
