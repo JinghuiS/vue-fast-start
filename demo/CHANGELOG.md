@@ -1,5 +1,13 @@
 # demo
 
+## 0.0.3
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @fast-start/core@0.3.0
+    -   @fast-start/control-flow@0.3.0
+
 ## 0.0.2
 
 ### Patch Changes

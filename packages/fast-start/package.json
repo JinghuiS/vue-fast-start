@@ -2,7 +2,7 @@
     "author": "Jinghui_S",
     "name": "@fast-start/core",
     "description": "easy vue admin component library",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "main": "dist/lib/index.js",
     "module": "dist/es/index.js",
     "types": "dist/es/index.d.ts",

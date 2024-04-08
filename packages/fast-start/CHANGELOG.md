@@ -1,5 +1,16 @@
 # @fast-start/core
 
+## 0.3.0
+
+### Minor Changes
+
+-   fix Switch not when
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @fast-start/control-flow@0.3.0
+
 ## 0.2.0
 
 ### Minor Changes
