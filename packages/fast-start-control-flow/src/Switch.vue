@@ -34,7 +34,7 @@ function recursiveGetChildren(
     }
 
     for (let i = 0; i < children.length; i++) {
-        const c = children[i].props!.when
+        const c = children[i].props && children[i].props!.when
         if (c) {
             return [i, c, children[i]]
         }
