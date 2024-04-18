@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ElFormItem, type FormItemProps } from "element-plus"
-import { useFormContext } from "../../content/form"
+import { useFormContext } from "../../context/form"
 import { type InputBindsConfig } from "vee-validate"
 import { computed, useSlots } from "vue"
 defineOptions({

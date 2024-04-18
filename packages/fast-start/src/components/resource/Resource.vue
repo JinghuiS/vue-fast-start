@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router"
-import { createResourceProvider } from "../../content/resource"
+import { createResourceProvider } from "../../context/resource"
 
 defineOptions({
     name: "FsResource"

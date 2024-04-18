@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ElForm, FormProps } from "element-plus"
 import { useForm, type FormOptions } from "vee-validate"
-import { createFormProvider } from "../../content/form"
+import { createFormProvider } from "../../context/form"
 import { computed } from "vue"
 defineOptions({
     name: "FsForm"

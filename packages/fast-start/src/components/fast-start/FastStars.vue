@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BaseLayout from "../layout/DefaultLayout.vue"
 import { initTheme } from "../../theme"
-import { type FastStarsProps, createFastStartProvider } from "../../content/fast-start"
+import { type FastStarsProps, createFastStartProvider } from "../../context/fast-start"
 
 import BodyOverlayScrollbars from "../BodyOverlayScrollbars.vue"
 import { onMounted, watch } from "vue"
@@ -31,7 +31,9 @@ onMounted(() => {
 watch(
     () => props.menu,
     () => {
-        setMenu(props.menu)
+        if (props.menu) {
+            setMenu(props.menu)
+        }
     }
 )
 </script>

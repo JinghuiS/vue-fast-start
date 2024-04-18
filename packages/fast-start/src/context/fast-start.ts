@@ -17,8 +17,8 @@ export const DEFAULT_FAST_START_CONTEXT: FastStarsProps = {
 }
 export const FAST_START_CONTEXT = Symbol("FAST_START_CONTEXT")
 
-export const createFastStartProvider = (content: FastStarsProps) => {
-    return provide(FAST_START_CONTEXT, content)
+export const createFastStartProvider = (context: FastStarsProps) => {
+    return provide(FAST_START_CONTEXT, context)
 }
 
 export const useFastStartContext = () => {

@@ -1,6 +1,6 @@
 import { computed } from "vue"
-import { useDataProviderContext } from "../content/data-provider"
-import { useFastStartContext } from "../content/fast-start"
+import { useDataProviderContext } from "../context/data-provider"
+import { useFastStartContext } from "../context/fast-start"
 import { defaultSort, defaultFilter } from "./consts"
 import type { BasicRecord, GetListParams, GetListResult } from "./types"
 import { useHttp } from "./useHttp"

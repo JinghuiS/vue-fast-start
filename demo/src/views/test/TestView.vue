@@ -7,18 +7,22 @@ import { ElTableColumn, ElButton, ElInput } from "element-plus"
 import { object, string, minLength, forward, custom, type Input, nullish } from "valibot"
 import { toTypedSchema } from "@vee-validate/valibot"
 
-const validationSchema = object({
-    test: string("请填写", [minLength(1, "必须填写")]),
-    name: nullish(string())
-})
+const validationSchema = object(
+    {
+        test: string("请填写", [minLength(1, "必须填写")]),
+        name: nullish(string())
+    },
+    [
+        forward(
+            custom((val) => val.test === val.name, "名字和测试名字不相同"),
+            ["name"]
+        )
+    ]
+)
 
 const veeValidationSchema = toTypedSchema(validationSchema)
 
 const [fsForm] = useFsForm<Input<typeof validationSchema>>()
-
-const submit = () => {
-    fsForm.value.validate().then((res) => {})
-}
 </script>
 
 <template>
@@ -37,5 +41,4 @@ const submit = () => {
             </FsFormItem>
         </If>
     </FsForm>
-    <ElButton @click="submit">提交</ElButton>
 </template>

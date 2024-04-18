@@ -6,8 +6,8 @@ export type Resource = {
 
 export const RESOURCE_CONTEXT = Symbol("RESOURCE_CONTEXT")
 
-export const createResourceProvider = (content: Resource) => {
-    return provide(RESOURCE_CONTEXT, content)
+export const createResourceProvider = (context: Resource) => {
+    return provide(RESOURCE_CONTEXT, context)
 }
 
 export const useResourceContext = () => {

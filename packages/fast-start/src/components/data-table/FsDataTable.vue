@@ -1,8 +1,8 @@
 <script setup lang="ts" generic="T extends any[]">
 import { ElTable, ElPagination, type TableProps, type TableInstance } from "element-plus"
 import { useGetList } from "../../api/useGetList"
-import { useResourceContext } from "../../content/resource"
-import { useFastStartContext } from "../../content/fast-start"
+import { useResourceContext } from "../../context/resource"
+import { useFastStartContext } from "../../context/fast-start"
 import { computed, ref, shallowRef, type Ref } from "vue"
 
 interface FsDataTableProps extends Partial<TableProps<T>> {
