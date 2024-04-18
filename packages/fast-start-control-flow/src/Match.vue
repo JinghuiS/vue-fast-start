@@ -1,9 +1,9 @@
-<script setup lang="ts" generic="T extends any ">
+<script setup lang="ts" generic="T extends any =any ">
 defineOptions({
     name: "Match"
 })
 defineProps<{
-    when: T | undefined | null | false
+    when: T | any
 }>()
 
 const valueType = (item: any) => {

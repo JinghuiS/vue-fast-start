@@ -4,21 +4,13 @@ import { If } from "@fast-start/control-flow"
 import { Switch, Match } from "@fast-start/control-flow"
 import { ElTableColumn, ElButton, ElInput } from "element-plus"
 import { computed, onMounted, ref } from "vue"
-import { object, string, minLength, forward, custom, type Input } from "valibot"
+import { object, string, minLength, forward, custom, type Input, nullish } from "valibot"
 import { toTypedSchema } from "@vee-validate/valibot"
 
-const validationSchema = object(
-    {
-        test: string([minLength(1, "必须填写")]),
-        name: string([minLength(1, "必须填写")])
-    },
-    [
-        forward(
-            custom((input) => input.test === input.name, "测试和名字不匹配"),
-            ["name"]
-        )
-    ]
-)
+const validationSchema = object({
+    test: string([minLength(1, "必须填写")]),
+    name: nullish(string())
+})
 
 const veeValidationSchema = toTypedSchema(validationSchema)
 
@@ -32,10 +24,10 @@ const [fsForm] = useFsForm<Input<typeof validationSchema>>()
         :validation-schema="veeValidationSchema"
         v-slot="{ values }"
     >
-        <FsFormItem label="测试" prop="test">
+        <FsFormItem required label="测试" prop="test">
             <ElInput />
         </FsFormItem>
-        <If :when="values.test === '1'">
+        <If :when="fsForm?.values.test" v-slot="{ value }">
             <FsFormItem label="名字" prop="name">
                 <ElInput />
             </FsFormItem>

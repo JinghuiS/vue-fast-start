@@ -20,8 +20,8 @@ const formContext = useFormContext()
 const elPlusConfig = (state: any) => ({
     props: {
         validateEvent: false,
-        error: state.errors[0],
-        required: state.required
+        error: state.errors[0]
+        // required: state.required
     }
 })
 
@@ -63,6 +63,7 @@ const filed = takeOverChild()
         :label-width="labelWidth"
         :size="size"
         :validate-status="validateStatus"
+        :required="required"
         v-bind="config"
     >
         <component :is="filed" v-model="value" />
