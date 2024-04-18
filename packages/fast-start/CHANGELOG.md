@@ -1,5 +1,13 @@
 # @fast-start/core
 
+## 0.3.1
+
+### Patch Changes
+
+-   fix If Switch type
+-   Updated dependencies
+    -   @fast-start/control-flow@0.3.1
+
 ## 0.3.0
 
 ### Minor Changes
