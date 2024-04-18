@@ -77,8 +77,8 @@
         "dist/lib/components/**/*.css"
     ],
     "peerDependencies": {
-        "vue": "^3.4.21",
         "element-plus": "^2.3.4",
+        "vue": "^3.4.21",
         "vue-router": "4"
     },
     "dependencies": {
@@ -90,6 +90,7 @@
         "element-plus": "^2.6.3",
         "overlayscrollbars": "^2.7.0",
         "overlayscrollbars-vue": "^0.5.9",
+        "vee-validate": "^4.12.6",
         "vue-router": "4"
     }
 }
