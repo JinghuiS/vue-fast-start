@@ -37,6 +37,6 @@ const elFormProps = computed<Partial<FormProps>>(() => {
 
 <template>
     <ElForm v-bind="elFormProps">
-        <slot />
+        <slot v-bind="veForm" />
     </ElForm>
 </template>

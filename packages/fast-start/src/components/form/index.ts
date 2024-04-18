@@ -1,3 +1,4 @@
 import FsForm from "./FsForm.vue"
 import FsFormItem from "./FsFormItem.vue"
-export { FsForm, FsFormItem }
+import { useFsForm } from "./useFsForm"
+export { FsForm, FsFormItem, useFsForm }
