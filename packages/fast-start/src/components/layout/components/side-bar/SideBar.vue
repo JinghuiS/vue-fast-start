@@ -3,8 +3,10 @@ import { ElAside, ElMenu } from "element-plus"
 import Item from "./Item.vue"
 import { HEADER_HIGHT } from "../../consts"
 import { useMenuStore, type FSMenuType } from "../../../../store/menu"
+import { useRoute } from "vue-router"
 
 const { state } = useMenuStore()
+const route = useRoute()
 </script>
 <template>
     <ElAside
@@ -12,7 +14,7 @@ const { state } = useMenuStore()
         width="230px"
         :style="{ height: `calc(100vh - ${HEADER_HIGHT}px)` }"
     >
-        <ElMenu class="fast-start-menu">
+        <ElMenu :default-active="route.path" router class="fast-start-menu">
             <Item :items="state.menu as FSMenuType[]" />
         </ElMenu>
     </ElAside>

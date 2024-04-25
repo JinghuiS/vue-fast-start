@@ -24,6 +24,7 @@
     },
     "devDependencies": {
         "@changesets/cli": "^2.27.1",
+        "@element-plus/icons-vue": "^2.3.1",
         "@tsconfig/node20": "^20.1.2",
         "@types/node": "^20.11.28",
         "@vitejs/plugin-vue": "^5.0.4",

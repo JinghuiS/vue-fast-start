@@ -3,7 +3,9 @@
     "include": [
         "env.d.ts",
         "src/**/*",
+        "src/**/*.ts",
         "src/**/*.vue"
+        // "src/global-component.d.ts"
         // "../packages/fast-start/index.ts",
         // "../packages/fast-start-control-flow/index.ts"
     ],
@@ -14,6 +16,6 @@
         "paths": {
             "@/*": ["./src/*"]
         },
-        "types": ["element-plus/global"]
+        "types": ["element-plus/global", "@fast-start/core/global", "./src/global-component.d.ts"]
     }
 }

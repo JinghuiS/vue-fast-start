@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ModalProvider } from "vue-modal-provider"
 import BaseLayout from "../layout/DefaultLayout.vue"
 import { initTheme } from "../../theme"
 import { type FastStarsProps, createFastStartProvider } from "../../context/fast-start"
@@ -39,7 +40,9 @@ watch(
 </script>
 
 <template>
-    <BodyOverlayScrollbars>
-        <slot name="layout"> <BaseLayout /> </slot>
-    </BodyOverlayScrollbars>
+    <ModalProvider>
+        <BodyOverlayScrollbars>
+            <slot name="layout"> <BaseLayout /> </slot>
+        </BodyOverlayScrollbars>
+    </ModalProvider>
 </template>

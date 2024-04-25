@@ -7,7 +7,8 @@ import { useHttp } from "./useHttp"
 
 export const useGetList = <RecordType extends BasicRecord = any>(
     resource: string,
-    params: Partial<GetListParams> = {}
+    params: Partial<GetListParams> = {},
+    immediate?: boolean
 ) => {
     const { pagination = { page: 1, perPage: 20 }, filter = defaultFilter } = params
 
@@ -16,7 +17,7 @@ export const useGetList = <RecordType extends BasicRecord = any>(
     const fastStarContext = useFastStartContext()
 
     const result = useHttp<GetListResult<RecordType>>({
-        immediate: true,
+        immediate: immediate,
         // queryKey: [filter, resource, pagination],
         queryFn: () =>
             new Promise((resolve, reject) => {

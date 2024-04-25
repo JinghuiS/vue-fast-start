@@ -3,7 +3,8 @@ import { computed } from "vue"
 import If from "./If.vue"
 
 defineOptions({
-    name: "For"
+    name: "For",
+    inheritAttrs: false
 })
 
 const props = defineProps<{

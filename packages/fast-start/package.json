@@ -7,10 +7,6 @@
     "module": "dist/es/index.mjs",
     "types": "dist/es/index.d.ts",
     "type": "module",
-    "files": [
-        "dist/",
-        "package.json"
-    ],
     "exports": {
         ".": {
             "types": "./dist/es/index.d.ts",
@@ -46,6 +42,9 @@
                 "./dist/lib/*/index.d.ts"
             ],
             "require": "./dist/lib/*.js"
+        },
+        "./global": {
+            "types": "./global.d.ts"
         },
         "./*": "./dist/*"
     },
@@ -91,6 +90,7 @@
         "overlayscrollbars": "^2.7.0",
         "overlayscrollbars-vue": "^0.5.9",
         "vee-validate": "^4.12.6",
+        "vue-modal-provider": "^0.4.1",
         "vue-router": "4"
     }
 }

@@ -1,6 +1,7 @@
 import { type Component, inject, provide } from "vue"
 import type { DataProvider } from "../api/types"
 import { FSMenuType } from "../store/menu"
+import { injectLocal, provideLocal } from "@vueuse/core"
 
 export type FastStarsProps = {
     rowKey?: string
@@ -18,9 +19,9 @@ export const DEFAULT_FAST_START_CONTEXT: FastStarsProps = {
 export const FAST_START_CONTEXT = Symbol("FAST_START_CONTEXT")
 
 export const createFastStartProvider = (context: FastStarsProps) => {
-    return provide(FAST_START_CONTEXT, context)
+    return provideLocal(FAST_START_CONTEXT, context)
 }
 
 export const useFastStartContext = () => {
-    return inject<FastStarsProps>(FAST_START_CONTEXT, DEFAULT_FAST_START_CONTEXT)
+    return injectLocal<FastStarsProps>(FAST_START_CONTEXT, DEFAULT_FAST_START_CONTEXT)
 }

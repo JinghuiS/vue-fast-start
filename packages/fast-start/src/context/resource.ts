@@ -1,4 +1,4 @@
-import { inject, provide } from "vue"
+import { injectLocal, provideLocal } from "@vueuse/shared"
 
 export type Resource = {
     name: string
@@ -7,9 +7,9 @@ export type Resource = {
 export const RESOURCE_CONTEXT = Symbol("RESOURCE_CONTEXT")
 
 export const createResourceProvider = (context: Resource) => {
-    return provide(RESOURCE_CONTEXT, context)
+    return provideLocal(RESOURCE_CONTEXT, context)
 }
 
 export const useResourceContext = () => {
-    return inject(RESOURCE_CONTEXT, { name: "" })
+    return injectLocal(RESOURCE_CONTEXT, { name: "" })
 }

@@ -24,7 +24,7 @@ const menu = ref<FSMenuType[]>([
     {
         path: "/",
         name: "Home",
-        icon: "HomeOutlined",
+        icon: "User",
         children: [
             {
                 path: "/test",
@@ -59,7 +59,7 @@ const menu = ref<FSMenuType[]>([
     {
         path: "/about",
         name: "About",
-        icon: "HomeOutlined",
+        // icon: "HomeOutlined",
         children: [
             {
                 path: "/about/test",

@@ -7,6 +7,7 @@ import { computed, ref, shallowRef, type Ref } from "vue"
 
 interface FsDataTableProps extends Partial<TableProps<T>> {
     tableData?: T
+    immediate?: boolean
 }
 defineOptions({
     name: "FsDataTable",
@@ -24,9 +25,15 @@ const listParams = ref({
     filter: {}
 })
 
-const { data, total, isLoading, execute } = useGetList(resourceContext.name, listParams.value)
+const props = withDefaults(defineProps<FsDataTableProps>(), {
+    immediate: true
+})
 
-const props = defineProps<FsDataTableProps>()
+const { data, total, isLoading, execute } = useGetList(
+    resourceContext.name,
+    listParams.value,
+    props.immediate
+)
 
 const _rowKey = computed(() => props.rowKey || fastStartContext.rowKey)
 const _data = computed(() => props.tableData || data.value)
@@ -35,8 +42,15 @@ const handlePageChange = () => {
     execute()
 }
 
+const setFilter = (filter: any) => {
+    listParams.value.filter = filter
+}
+
 defineExpose({
-    tableInstance: tableInstance as Ref<TableInstance>
+    tableInstance: tableInstance as Ref<TableInstance>,
+    setFilter,
+    handlePageChange,
+    filter: listParams.value.filter
 })
 </script>
 
