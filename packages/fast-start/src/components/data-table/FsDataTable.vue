@@ -4,6 +4,7 @@ import { useGetList } from "../../api/useGetList"
 import { useResourceContext } from "../../context/resource"
 import { useFastStartContext } from "../../context/fast-start"
 import { computed, ref, shallowRef, type Ref } from "vue"
+import { useUrlState } from "../../hooks/useUrlState"
 
 interface FsDataTableProps extends Partial<TableProps<T>> {
     tableData?: T
@@ -14,19 +15,32 @@ defineOptions({
     inheritAttrs: false
 })
 
+const props = withDefaults(defineProps<FsDataTableProps>(), {
+    immediate: true
+})
 const resourceContext = useResourceContext()
 const fastStartContext = useFastStartContext()
 const tableInstance = shallowRef<any>(null)
+
+const [filterValues, setFilterValues] = useUrlState(
+    {
+        pagination: {
+            page: 1,
+            perPage: 10
+        },
+        filter: {}
+    },
+    {
+        nestedKey: "tableState"
+    }
+)
+
 const listParams = ref({
     pagination: {
-        page: 1,
-        perPage: 10
+        page: Number(filterValues.pagination?.page) || 1,
+        perPage: Number(filterValues.pagination?.perPage) || 10
     },
     filter: {}
-})
-
-const props = withDefaults(defineProps<FsDataTableProps>(), {
-    immediate: true
 })
 
 const { data, total, isLoading, execute } = useGetList(
@@ -40,6 +54,8 @@ const _data = computed(() => props.tableData || data.value)
 
 const handlePageChange = () => {
     execute()
+    //@ts-ignore
+    setFilterValues(listParams.value)
 }
 
 const setFilter = (filter: any) => {

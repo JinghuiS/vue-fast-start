@@ -82,15 +82,21 @@
     },
     "dependencies": {
         "@fast-start/control-flow": "workspace:^",
+        "@types/lodash-es": "^4.17.12",
         "@vueuse/core": "^10.9.0",
         "@vueuse/router": "^10.9.0",
         "@vueuse/shared": "^10.9.0",
         "axios": "^1.6.8",
         "element-plus": "^2.6.3",
+        "lodash-es": "^4.17.21",
         "overlayscrollbars": "^2.7.0",
         "overlayscrollbars-vue": "^0.5.9",
+        "qs": "^6.12.1",
         "vee-validate": "^4.12.6",
         "vue-modal-provider": "^0.4.1",
         "vue-router": "4"
+    },
+    "devDependencies": {
+        "@types/qs": "^6.9.15"
     }
 }

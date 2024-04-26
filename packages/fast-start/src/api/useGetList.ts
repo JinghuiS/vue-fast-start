@@ -4,6 +4,7 @@ import { useFastStartContext } from "../context/fast-start"
 import { defaultSort, defaultFilter } from "./consts"
 import type { BasicRecord, GetListParams, GetListResult } from "./types"
 import { useHttp } from "./useHttp"
+import { useRouter } from "vue-router"
 
 export const useGetList = <RecordType extends BasicRecord = any>(
     resource: string,
