@@ -8,11 +8,9 @@ import {} from "./consts"
 </script>
 
 <template>
-    <div>
-        <Header />
-        <ElContainer>
-            <SideBar />
-            <Main />
-        </ElContainer>
-    </div>
+    <Header />
+    <ElContainer>
+        <SideBar />
+        <Main />
+    </ElContainer>
 </template>

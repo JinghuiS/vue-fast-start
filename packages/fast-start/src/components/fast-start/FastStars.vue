@@ -13,7 +13,9 @@ defineOptions({
 
 const props = withDefaults(defineProps<FastStarsProps>(), {
     rowKey: "id",
-    useTheme: true
+    useTheme: true,
+    title: "Fast Start",
+    routerMode: "hash"
 })
 if (props.useTheme) {
     initTheme()
