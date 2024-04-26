@@ -12,5 +12,8 @@ declare module "vue" {
         Switch: typeof import("@fast-start/core")["Switch"]
         Match: typeof import("@fast-start/core")["Match"]
     }
+    export interface ComponentCustomProperties {
+        vAcl: string
+    }
 }
 export {}

@@ -7,6 +7,7 @@ import { ElTableColumn, ElButton, ElInput } from "element-plus"
 import { object, string, minLength, forward, custom, type Input, nullish } from "valibot"
 import { toTypedSchema } from "@vee-validate/valibot"
 import Modal from "./Modal.vue"
+import { ref } from "vue"
 
 const modal = useModal(Modal)
 const validationSchema = object(
@@ -30,10 +31,21 @@ const show = () => {
         console.log(msg)
     })
 }
+
+const aclList = ref({
+    acl: "test",
+    acl1: "test"
+})
 </script>
 
 <template>
-    <ElButton @click="show">测试</ElButton>
+    <ElButton @click="aclList.acl = aclList.acl === 'test' ? 'test1' : 'test'">展示acl</ElButton>
+    <ElButton @click="aclList.acl1 = aclList.acl1 === 'test' ? 'test1' : 'test'"
+        >展示 acl1
+    </ElButton>
+
+    <ElButton v-acl="aclList.acl" @click="show">测试</ElButton>
+    <ElButton v-acl="aclList.acl1" @click="show">测试11</ElButton>
     <FsForm
         ref="fsForm"
         label-position="top"
@@ -49,4 +61,8 @@ const show = () => {
             </FsFormItem>
         </If>
     </FsForm>
+
+    <FsDataTable>
+        <ElTableColumn prop="name" label="1Date" />
+    </FsDataTable>
 </template>

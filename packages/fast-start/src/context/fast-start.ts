@@ -4,9 +4,11 @@ import { FSMenuType } from "../store/menu"
 import { injectLocal, provideLocal } from "@vueuse/core"
 
 export type FastStarsProps = {
+    title?: string
     rowKey?: string
     basename?: string
     dataProvider?: DataProvider
+    routerMode?: "hash" | "history"
     // authProvider?: AuthProvider
     layout?: Component
     useTheme?: boolean
@@ -14,7 +16,9 @@ export type FastStarsProps = {
 }
 
 export const DEFAULT_FAST_START_CONTEXT: FastStarsProps = {
-    rowKey: "id"
+    rowKey: "id",
+    title: "Fast Start",
+    routerMode: "hash"
 }
 export const FAST_START_CONTEXT = Symbol("FAST_START_CONTEXT")
 

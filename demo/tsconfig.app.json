@@ -16,6 +16,6 @@
         "paths": {
             "@/*": ["./src/*"]
         },
-        "types": ["element-plus/global", "@fast-start/core/global", "./src/global-component.d.ts"]
+        "types": ["element-plus/global", "@fast-start/core/global"]
     }
 }

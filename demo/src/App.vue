@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { FastStars, useMenuStore, type FSMenuType } from "@fast-start/core"
-import { If, For } from "@fast-start/control-flow"
+import { FastStars, useMenuStore, type FSMenuType, useAclStore } from "@fast-start/core"
+
 import { ref } from "vue"
 type AType = "a" | "b" | "c"
 const show = ref(true)
 const { setMenu } = useMenuStore()
+
+const { setPermission } = useAclStore()
+
+setPermission(["test"])
 
 const testA = ref<AType>("a")
 
@@ -81,7 +85,7 @@ const add = (item: AType) => {
 </script>
 
 <template>
-    <FastStars :menu="menu" />
+    <FastStars router-mode="history" title="FastStart" :menu="menu" />
 </template>
 
 <style>

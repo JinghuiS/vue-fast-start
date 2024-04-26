@@ -20,7 +20,7 @@ const close = (done: (msg?: any) => void) => {
     <fs-dialog title="Tips" remove-on-closed>
         {{ text }}
         <template #footer>
-            <FsPopupFooter :confirm-loading="loading" @confirm="close" />
+            <fs-popup-footer :confirm-loading="loading" @confirm="close" />
         </template>
     </fs-dialog>
 </template>
