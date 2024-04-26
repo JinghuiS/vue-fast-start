@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FsForm, FsFormItem, useFsForm, useModal } from "@fast-start/core"
+import { FsForm, FsFormItem, useFsForm, useModal, useFsDataTable } from "@fast-start/core"
 import { If } from "@fast-start/control-flow"
 
 import { ElTableColumn, ElButton, ElInput } from "element-plus"
@@ -8,6 +8,7 @@ import { object, string, minLength, forward, custom, type Input, nullish } from 
 import { toTypedSchema } from "@vee-validate/valibot"
 import Modal from "./Modal.vue"
 import { ref } from "vue"
+import { onMounted } from "vue"
 
 const modal = useModal(Modal)
 const validationSchema = object(
@@ -26,10 +27,29 @@ const validationSchema = object(
 const veeValidationSchema = toTypedSchema(validationSchema)
 
 const [fsForm] = useFsForm<Input<typeof validationSchema>>()
+
+const [fsDataTable] = useFsDataTable()
+
+const check = ref([
+    {
+        id: 1
+    },
+    {
+        id: 5
+    }
+])
+onMounted(() => {
+    fsDataTable.value.toggleSelection(check.value)
+})
+
 const show = () => {
-    modal.show({ text: "1111" }).then((msg) => {
-        console.log(msg)
-    })
+    modal
+        .show({
+            text: "1"
+        })
+        .then((msg) => {
+            console.log(msg)
+        })
 }
 
 const aclList = ref({
@@ -62,7 +82,8 @@ const aclList = ref({
         </If>
     </FsForm>
 
-    <FsDataTable>
+    <FsDataTable ref="fsDataTable">
+        <ElTableColumn reserve-selection type="selection" width="55" />
         <ElTableColumn prop="name" label="1Date" />
     </FsDataTable>
 </template>

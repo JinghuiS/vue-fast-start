@@ -5,6 +5,8 @@ import { useResourceContext } from "../../context/resource"
 import { useFastStartContext } from "../../context/fast-start"
 import { computed, ref, shallowRef, type Ref } from "vue"
 import { useUrlState } from "../../hooks/useUrlState"
+import { watch } from "vue"
+import { readonly } from "vue"
 
 interface FsDataTableProps extends Partial<TableProps<T>> {
     tableData?: T
@@ -18,9 +20,12 @@ defineOptions({
 const props = withDefaults(defineProps<FsDataTableProps>(), {
     immediate: true
 })
+
+const multipleSelection = ref<any>([])
+
 const resourceContext = useResourceContext()
 const fastStartContext = useFastStartContext()
-const tableInstance = shallowRef<any>(null)
+const tableInstance = shallowRef<InstanceType<typeof ElTable>>()
 
 const [filterValues, setFilterValues] = useUrlState(
     {
@@ -62,17 +67,40 @@ const setFilter = (filter: any) => {
     listParams.value.filter = filter
 }
 
+const handleSelectionChange = (val: any[]) => {
+    // multipleSelection.value = val
+}
+
+const clearSelection = () => {
+    tableInstance.value?.clearSelection()
+}
+
+const toggleSelection = (rows: any[]) => {
+    rows.forEach((row) => {
+        // TODO: improvement typing when refactor table
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        tableInstance.value?.toggleRowSelection(row, undefined)
+    })
+}
+
+const filter = computed(() => listParams.value.filter)
+
 defineExpose({
-    tableInstance: tableInstance as Ref<TableInstance>,
+    tableInstance: tableInstance.value,
     setFilter,
     handlePageChange,
-    filter: listParams.value.filter
+    filter: readonly(filter),
+    multipleSelection,
+    clearSelection,
+    toggleSelection
 })
 </script>
 
 <template>
     <div class="fast-start-table">
         <el-table
+            @selection-change="handleSelectionChange"
             ref="tableInstance"
             v-loading="isLoading"
             :row-key="_rowKey"
@@ -81,7 +109,7 @@ defineExpose({
             highlight-current-row
             scrollbar-always-on
         >
-            <slot />
+            <slot :data="data" :loading="isLoading" :total="total" />
         </el-table>
         <el-pagination
             :disabled="isLoading"
