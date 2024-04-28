@@ -157,11 +157,8 @@ export interface DeleteManyResult<RecordType extends BasicRecord = any> {
 export interface AuthProvider {
     login: (params: any) => Promise<{ redirectTo?: string | boolean } | void | any>
     logout: (params: any) => Promise<void | false | string>
-    checkAuth: (params: any) => Promise<void>
+    checkAuth: (params?: any) => Promise<void>
     checkError: (error: any) => Promise<void>
-    getIdentity?: () => Promise<UserIdentity>
-    getPermissions: (params: any) => Promise<any>
-    handleCallback?: () => Promise<AuthRedirectResult | void | any>
 }
 
 export interface UserIdentity {
