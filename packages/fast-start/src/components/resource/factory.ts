@@ -10,6 +10,7 @@ export type CreateResourceFactoryConfig = {
     detailView?: RouteComponent | Lazy<RouteComponent>
     editView?: RouteComponent | Lazy<RouteComponent>
     createView?: RouteComponent | Lazy<RouteComponent>
+    otherViews?: RouteRecordRaw[]
 }
 
 const createResourceRoutes = (config: CreateResourceFactoryConfig): RouteRecordRaw[] => {
@@ -44,7 +45,8 @@ const createResourceRoutes = (config: CreateResourceFactoryConfig): RouteRecordR
                     path: "detail/:id",
                     name: `${config.name}-detail`,
                     component: config.detailView
-                }
+                },
+                ...(config.otherViews || [])
             ]
         }
     ]
