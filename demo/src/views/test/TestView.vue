@@ -5,7 +5,8 @@ import {
     useFsForm,
     useModal,
     useFsDataTable,
-    FsTableActionColumn
+    FsTableActionColumn,
+    abc
 } from "@fast-start/core"
 import { If } from "@fast-start/control-flow"
 
@@ -31,6 +32,7 @@ const validationSchema = object(
     ]
 )
 
+const { set, isLoading } = abc()
 const veeValidationSchema = toTypedSchema(validationSchema)
 
 const [fsForm] = useFsForm<Input<typeof validationSchema>>()
@@ -63,10 +65,12 @@ const aclList = ref({
     acl: "test",
     acl1: "test"
 })
+
+
 </script>
 
 <template>
-    <ElButton @click="aclList.acl = aclList.acl === 'test' ? 'test1' : 'test'">展示acl</ElButton>
+   
     <ElButton @click="aclList.acl1 = aclList.acl1 === 'test' ? 'test1' : 'test'"
         >展示 acl1
     </ElButton>

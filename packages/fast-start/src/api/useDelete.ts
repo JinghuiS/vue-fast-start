@@ -10,8 +10,6 @@ export const useDelete = <RecordType extends BasicRecord = any>(
     const result = useHttp({
         immediate: immediate,
         queryFn: (params: DeleteParams<any>) => {
-            console.log(params)
-
             return deleteOne<RecordType>(resource, params)
         }
     })
