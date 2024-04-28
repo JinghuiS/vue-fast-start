@@ -15,7 +15,8 @@ const props = withDefaults(defineProps<FastStarsProps>(), {
     rowKey: "id",
     useTheme: true,
     title: "Fast Start",
-    routerMode: "hash"
+    routerMode: "hash",
+    basename: "/"
 })
 if (props.useTheme) {
     initTheme()

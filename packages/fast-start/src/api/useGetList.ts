@@ -22,19 +22,17 @@ export const useGetList = <RecordType extends BasicRecord = any>(
         // queryKey: [filter, resource, pagination],
         queryFn: () =>
             new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    dataProvider!
-                        .getList<RecordType>(resource, {
-                            pagination,
-                            filter
-                        })
-                        .then(({ data, total }) => ({
-                            data,
-                            total
-                        }))
-                        .then(resolve)
-                        .catch(reject)
-                }, 2000)
+                dataProvider!
+                    .getList<RecordType>(resource, {
+                        pagination,
+                        filter
+                    })
+                    .then(({ data, total }) => ({
+                        data,
+                        total
+                    }))
+                    .then(resolve)
+                    .catch(reject)
             }),
         initialData: {
             data: [],

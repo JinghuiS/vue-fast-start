@@ -14,6 +14,42 @@ export type CreateResourceFactoryConfig = {
 }
 
 const createResourceRoutes = (config: CreateResourceFactoryConfig): RouteRecordRaw[] => {
+    const routes: RouteRecordRaw[] = []
+
+    if (config.listView) {
+        routes.push({
+            path: ``,
+            name: `${config.name}-list`,
+            component: config.listView
+        })
+    }
+
+    if (config.editView) {
+        routes.push({
+            path: `edit/:id`,
+            name: `${config.name}-edit`,
+            component: config.editView
+        })
+    }
+
+    if (config.createView) {
+        routes.push({
+            path: `create`,
+            name: `${config.name}-create`,
+            component: config.createView
+        })
+    }
+
+    if (config.detailView) {
+        routes.push({
+            path: `detail/:id`,
+            name: `${config.name}-detail`,
+            component: config.detailView
+        })
+    }
+
+    // routes.push(...(config.otherViews || []))
+
     return [
         {
             path: `/${config.name}`,
@@ -22,32 +58,7 @@ const createResourceRoutes = (config: CreateResourceFactoryConfig): RouteRecordR
             props: {
                 name: config.name
             },
-            children: [
-                {
-                    path: "",
-                    name: `${config.name}-list`,
-                    component: config.listView
-                },
-                //@ts-ignore
-                config.editView && {
-                    path: "edit/:id",
-                    name: `${config.name}-edit`,
-                    component: config.editView
-                },
-                //@ts-ignore
-                config.createView && {
-                    path: "create",
-                    name: `${config.name}-create`,
-                    component: config.createView
-                },
-                //@ts-ignore
-                config.detailView && {
-                    path: "detail/:id",
-                    name: `${config.name}-detail`,
-                    component: config.detailView
-                },
-                ...(config.otherViews || [])
-            ]
+            children: [...routes, ...(config.otherViews || [])]
         }
     ]
 }
@@ -59,7 +70,8 @@ export const createResourceFactory = (config: CreateResourceFactoryConfig) => {
         list: `/${config.name}`,
         edit: (id: any) => `/${config.name}/edit/${id}`,
         create: `/${config.name}/create`,
-        detail: (id: any) => `/${config.name}/detail/${id}`
+        detail: (id: any) => `/${config.name}/detail/${id}`,
+        basePath: `/${config.name}`
     }
 
     return {

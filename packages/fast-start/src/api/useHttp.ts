@@ -1,7 +1,7 @@
 import { noop, until } from "@vueuse/shared"
 import { shallowRef, ref, type Ref, watch } from "vue"
 export interface UseHttpOptions<T = any, QueryKey = unknown> {
-    queryFn: () => Promise<T>
+    queryFn: (params?: any) => Promise<T>
     queryKey?: QueryKey[]
     /**
      * Will automatically run  request when `useHttp` is used
@@ -84,7 +84,7 @@ export function useHttp<T>(options: UseHttpOptions<T>) {
 
     let executeCounter = 0
 
-    const execute = () => {
+    const execute = <T = any>(params?: T) => {
         error.value = undefined
         if (isLoading.value) {
             return promise
@@ -100,7 +100,7 @@ export function useHttp<T>(options: UseHttpOptions<T>) {
         executeCounter += 1
         const currentExecuteCounter = executeCounter
 
-        queryFn()
+        queryFn(params)
             .then((r: any) => {
                 const result = r
                 data.value = result

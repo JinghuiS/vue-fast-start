@@ -7,6 +7,8 @@ import { computed, ref, shallowRef, type Ref } from "vue"
 import { useUrlState } from "../../hooks/useUrlState"
 import { watch } from "vue"
 import { readonly } from "vue"
+import { createDataProviderProvider } from "../../context/data-provider"
+import { createFsDataTableProvider } from "../../context/fs-table"
 
 interface FsDataTableProps extends Partial<TableProps<T>> {
     tableData?: T
@@ -25,7 +27,7 @@ const multipleSelection = ref<any>([])
 
 const resourceContext = useResourceContext()
 const fastStartContext = useFastStartContext()
-const tableInstance = shallowRef<InstanceType<typeof ElTable>>()
+const tableInstance = shallowRef<TableInstance>()
 
 const [filterValues, setFilterValues] = useUrlState(
     {
@@ -86,10 +88,20 @@ const toggleSelection = (rows: any[]) => {
 
 const filter = computed(() => listParams.value.filter)
 
+createFsDataTableProvider({
+    tableInstance: tableInstance.value as TableInstance,
+    setFilter,
+    reload: handlePageChange,
+    filter: readonly(filter),
+    multipleSelection,
+    rowKey: _rowKey.value as string,
+    clearSelection,
+    toggleSelection
+})
 defineExpose({
     tableInstance: tableInstance.value,
     setFilter,
-    handlePageChange,
+    reload: handlePageChange,
     filter: readonly(filter),
     multipleSelection,
     clearSelection,

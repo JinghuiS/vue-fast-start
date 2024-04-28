@@ -5,11 +5,12 @@ import type { TableInstance } from "element-plus"
 export type FsDataTableInstance = {
     tableInstance: TableInstance
     setFilter: (filter: any) => void
-    handlePageChange: () => void
+    reload: () => void
     filter: Readonly<Ref<any>>
-    multipleSelection: any[]
+    multipleSelection: Ref<any[]>
     clearSelection: () => void
     toggleSelection: (rows: any[]) => void
+    rowKey: string
 }
 
 export const useFsDataTable = () => {

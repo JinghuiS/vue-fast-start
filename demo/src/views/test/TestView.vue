@@ -1,5 +1,12 @@
 <script setup lang="ts">
-import { FsForm, FsFormItem, useFsForm, useModal, useFsDataTable } from "@fast-start/core"
+import {
+    FsForm,
+    FsFormItem,
+    useFsForm,
+    useModal,
+    useFsDataTable,
+    FsTableActionColumn
+} from "@fast-start/core"
 import { If } from "@fast-start/control-flow"
 
 import { ElTableColumn, ElButton, ElInput } from "element-plus"
@@ -85,5 +92,6 @@ const aclList = ref({
     <FsDataTable ref="fsDataTable">
         <ElTableColumn reserve-selection type="selection" width="55" />
         <ElTableColumn prop="name" label="1Date" />
+        <FsTableActionColumn width="150px" />
     </FsDataTable>
 </template>

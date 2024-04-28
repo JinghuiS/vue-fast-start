@@ -32,16 +32,6 @@ export type DataProvider<ResourceType extends string = string> = {
         params: GetOneParams
     ) => Promise<GetOneResult<RecordType>>
 
-    getMany: <RecordType extends BasicRecord = any>(
-        resource: ResourceType,
-        params: GetManyParams
-    ) => Promise<GetManyResult<RecordType>>
-
-    getManyReference: <RecordType extends BasicRecord = any>(
-        resource: ResourceType,
-        params: GetManyReferenceParams
-    ) => Promise<GetManyReferenceResult<RecordType>>
-
     update: <RecordType extends BasicRecord = any>(
         resource: ResourceType,
         params: UpdateParams
@@ -52,7 +42,7 @@ export type DataProvider<ResourceType extends string = string> = {
         params: CreateParams
     ) => Promise<CreateResult<RecordType>>
 
-    delete: <RecordType extends BasicRecord = any>(
+    deleteOne: <RecordType extends BasicRecord = any>(
         resource: ResourceType,
         params: DeleteParams<RecordType>
     ) => Promise<DeleteResult<RecordType>>
@@ -145,8 +135,7 @@ export interface CreateResult<RecordType extends BasicRecord = any> {
 
 export interface DeleteParams<RecordType extends BasicRecord = any> {
     id: RecordType["id"]
-    previousData?: RecordType
-    meta?: any
+    data?: any
 }
 
 export interface DeleteResult<RecordType extends BasicRecord = any> {

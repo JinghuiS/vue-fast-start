@@ -7,7 +7,8 @@ import {
     FsResource,
     FsForm,
     FsFormItem,
-    FsLayout
+    FsLayout,
+    FsTableActionColumn
 } from "./components"
 import { If, Switch, Match, For } from "@fast-start/control-flow"
 import type { App } from "vue"
@@ -21,8 +22,12 @@ export * from "./context/resource"
 export * from "./store/menu"
 export * from "./store/acl"
 export * from "./external"
-
-function install(app: App) {
+export * from "./api/useCreate"
+export * from "./api/useUpdate"
+export * from "./api/useCurd"
+export * from "./api/useGetList"
+export * from "./api/useGetOne"
+export function install(app: App) {
     const FsComponents = [
         FastStars,
         FsLayout,
@@ -34,6 +39,7 @@ function install(app: App) {
         FsDialog,
         FsPopupFooter,
         FsDataTable,
+        FsTableActionColumn,
 
         FsResource,
 

@@ -18,7 +18,8 @@ export type FastStarsProps = {
 export const DEFAULT_FAST_START_CONTEXT: FastStarsProps = {
     rowKey: "id",
     title: "Fast Start",
-    routerMode: "hash"
+    routerMode: "hash",
+    basename: "/"
 }
 export const FAST_START_CONTEXT = Symbol("FAST_START_CONTEXT")
 

@@ -3,7 +3,7 @@ import { httpClient } from "./request"
 
 export const defaultDataProvider: DataProvider = {
     create: () => Promise.resolve({ data: null } as any), // avoids adding a context in tests
-    delete: () => Promise.resolve({ data: null } as any), // avoids adding a context in tests
+    deleteOne: () => Promise.resolve({ data: null } as any), // avoids adding a context in tests
 
     getList: () =>
         Promise.resolve({
