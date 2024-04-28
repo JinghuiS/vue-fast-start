@@ -26,6 +26,24 @@ const createResourceRoutes = (config: CreateResourceFactoryConfig): RouteRecordR
                     path: "",
                     name: `${config.name}-list`,
                     component: config.listView
+                },
+                //@ts-ignore
+                config.editView && {
+                    path: "edit/:id",
+                    name: `${config.name}-edit`,
+                    component: config.editView
+                },
+                //@ts-ignore
+                config.createView && {
+                    path: "create",
+                    name: `${config.name}-create`,
+                    component: config.createView
+                },
+                //@ts-ignore
+                config.detailView && {
+                    path: "detail/:id",
+                    name: `${config.name}-detail`,
+                    component: config.detailView
                 }
             ]
         }
@@ -35,7 +53,16 @@ const createResourceRoutes = (config: CreateResourceFactoryConfig): RouteRecordR
 export const createResourceFactory = (config: CreateResourceFactoryConfig) => {
     const routes = createResourceRoutes(config)
 
+    const routePath = {
+        list: `/${config.name}`,
+        edit: (id: any) => `/${config.name}/edit/${id}`,
+        create: `/${config.name}/create`,
+        detail: (id: any) => `/${config.name}/detail/${id}`
+    }
+
     return {
-        routes
+        name: config.name,
+        routes,
+        routePath
     }
 }
