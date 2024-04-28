@@ -1,5 +1,17 @@
 # @fast-start/core
 
+## 0.5.0
+
+### Minor Changes
+
+-   add useHttp
+    add useGetList
+    add useUpdate
+    add useDelete
+    add useGetOne
+    add useCurd
+    change resource
+
 ## 0.4.0
 
 ### Minor Changes
