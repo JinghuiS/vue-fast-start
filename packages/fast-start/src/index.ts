@@ -14,6 +14,7 @@ import type { App } from "vue"
 import { installDirective } from "./directive/install"
 
 export * from "./hooks"
+export * from "./api"
 export * from "./components"
 export * from "./context/resource"
 // export * from "./install"
