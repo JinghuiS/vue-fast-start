@@ -85,7 +85,9 @@ const add = (item: AType) => {
 </script>
 
 <template>
-    <FastStars router-mode="history" title="FastStart" :menu="menu" />
+    <FastStars router-mode="history" title="FastStart" :menu="menu">
+        <RouterView />
+    </FastStars>
 </template>
 
 <style>

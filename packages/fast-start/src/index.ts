@@ -6,12 +6,14 @@ import {
     FsDataTable,
     FsResource,
     FsForm,
-    FsFormItem
+    FsFormItem,
+    FsLayout
 } from "./components"
 import { If, Switch, Match, For } from "@fast-start/control-flow"
 import type { App } from "vue"
 import { installDirective } from "./directive/install"
 
+export * from "./hooks"
 export * from "./components"
 export * from "./context/resource"
 // export * from "./install"
@@ -22,7 +24,7 @@ export * from "./external"
 function install(app: App) {
     const FsComponents = [
         FastStars,
-
+        FsLayout,
         If,
         Switch,
         Match,

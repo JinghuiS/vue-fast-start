@@ -1,5 +1,14 @@
 # @fast-start/core
 
+## 0.4.0
+
+### Minor Changes
+
+-   add layout
+    add useFsTable hook
+    add FsDialg
+    add acl
+
 ## 0.3.1
 
 ### Patch Changes
