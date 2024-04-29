@@ -1,5 +1,13 @@
 # @fast-start/core
 
+## 0.6.0
+
+### Minor Changes
+
+-   add FsAuthProvider
+    add useTransition
+    add FsDataTable request props
+
 ## 0.5.0
 
 ### Minor Changes
