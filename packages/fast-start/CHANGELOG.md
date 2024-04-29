@@ -1,5 +1,11 @@
 # @fast-start/core
 
+## 0.6.3
+
+### Patch Changes
+
+-   fix DataProvider type
+
 ## 0.6.2
 
 ### Patch Changes
