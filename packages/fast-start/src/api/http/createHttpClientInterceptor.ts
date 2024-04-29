@@ -18,8 +18,8 @@ const defaultError = (error: any) => {
     return Promise.reject(error)
 }
 export function createHttpClientInterceptor(
-    http = httpClient,
-    interceptors: HttpClientInterceptor[] = []
+    interceptors: HttpClientInterceptor[] = [],
+    http = httpClient
 ) {
     const _httpClient: typeof httpClient = (options: HttpOptions = {}) => {
         const _axios = http(options)

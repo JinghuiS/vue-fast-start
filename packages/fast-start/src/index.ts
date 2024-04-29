@@ -22,11 +22,6 @@ export * from "./context/resource"
 export * from "./store/menu"
 export * from "./store/acl"
 export * from "./external"
-export * from "./api/useCreate"
-export * from "./api/useUpdate"
-export * from "./api/useCurd"
-export * from "./api/useGetList"
-export * from "./api/useGetOne"
 export function install(app: App) {
     const FsComponents = [
         FastStars,
