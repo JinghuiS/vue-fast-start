@@ -1,5 +1,11 @@
 # @fast-start/core
 
+## 0.6.2
+
+### Patch Changes
+
+-   fix createHttpClientInterceptor type
+
 ## 0.6.1
 
 ### Patch Changes
