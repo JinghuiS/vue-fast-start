@@ -7,12 +7,14 @@ import { computed, ref, shallowRef, type Ref } from "vue"
 import { useUrlState } from "../../hooks/useUrlState"
 import { watch } from "vue"
 import { readonly } from "vue"
-import { createDataProviderProvider } from "../../context/data-provider"
+import { createDataProviderProvider, useDataProviderContext } from "../../context/data-provider"
 import { createFsDataTableProvider } from "../../context/fs-table"
+import { DataProvider } from "../../api/types"
 
 interface FsDataTableProps extends Partial<TableProps<T>> {
     tableData?: T
     immediate?: boolean
+    request?: DataProvider["getList"]
 }
 defineOptions({
     name: "FsDataTable",
@@ -22,6 +24,10 @@ defineOptions({
 const props = withDefaults(defineProps<FsDataTableProps>(), {
     immediate: true
 })
+const dataProvider = useDataProviderContext()
+if (props.request) {
+    createDataProviderProvider({ ...dataProvider, getList: props.request })
+}
 
 const multipleSelection = ref<any>([])
 
@@ -126,8 +132,6 @@ defineExpose({
         <el-pagination
             :disabled="isLoading"
             class="fast-start-pagination"
-            :page-sizes="[10, 20, 30, 100]"
-            layout="prev, pager, next,sizes"
             :total="total"
             @change="handlePageChange"
             v-model:current-page="listParams.pagination.page"

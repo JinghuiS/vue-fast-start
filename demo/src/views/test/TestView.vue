@@ -5,8 +5,7 @@ import {
     useFsForm,
     useModal,
     useFsDataTable,
-    FsTableActionColumn,
-    abc
+    FsTableActionColumn
 } from "@fast-start/core"
 import { If } from "@fast-start/control-flow"
 
@@ -32,7 +31,6 @@ const validationSchema = object(
     ]
 )
 
-const { set, isLoading } = abc()
 const veeValidationSchema = toTypedSchema(validationSchema)
 
 const [fsForm] = useFsForm<Input<typeof validationSchema>>()
@@ -66,11 +64,15 @@ const aclList = ref({
     acl1: "test"
 })
 
-
+const request = () => {
+    return Promise.resolve({
+        data: [{ id: 1, name: 1 }],
+        total: 1
+    })
+}
 </script>
 
 <template>
-   
     <ElButton @click="aclList.acl1 = aclList.acl1 === 'test' ? 'test1' : 'test'"
         >展示 acl1
     </ElButton>
@@ -93,7 +95,7 @@ const aclList = ref({
         </If>
     </FsForm>
 
-    <FsDataTable ref="fsDataTable">
+    <FsDataTable :request="request" ref="fsDataTable">
         <ElTableColumn reserve-selection type="selection" width="55" />
         <ElTableColumn prop="name" label="1Date" />
         <FsTableActionColumn width="150px" />
