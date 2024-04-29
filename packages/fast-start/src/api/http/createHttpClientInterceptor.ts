@@ -1,4 +1,9 @@
-import type { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from "axios"
+import type {
+    AxiosInstance,
+    AxiosRequestConfig,
+    AxiosResponse,
+    InternalAxiosRequestConfig
+} from "axios"
 import { type HttpOptions, httpClient } from "./request"
 
 export interface HttpResponse<T = any> extends AxiosResponse<T> {}
@@ -19,36 +24,33 @@ const defaultError = (error: any) => {
 }
 export function createHttpClientInterceptor(
     interceptors: HttpClientInterceptor[] = [],
-    http = httpClient
+    http: AxiosInstance
 ) {
-    const _httpClient: typeof httpClient = (options: HttpOptions = {}) => {
-        const _axios = http(options)
-        interceptors.forEach((interceptor) => {
-            _axios.interceptors.request.use(
-                (...args) => {
-                    return interceptor.request(...args)
-                },
-                (error) => {
-                    if (interceptor.requestError) {
-                        return interceptor.requestError(error)
-                    }
-                    return defaultError(error)
+    const _axios = http
+    interceptors.forEach((interceptor) => {
+        _axios.interceptors.request.use(
+            (...args) => {
+                return interceptor.request(...args)
+            },
+            (error) => {
+                if (interceptor.requestError) {
+                    return interceptor.requestError(error)
                 }
-            )
-            _axios.interceptors.response.use(
-                (...args) => {
-                    return interceptor.response(...args)
-                },
-                (error) => {
-                    if (interceptor.responseError) {
-                        return interceptor.responseError(error)
-                    }
-                    return defaultError(error)
+                return defaultError(error)
+            }
+        )
+        _axios.interceptors.response.use(
+            (...args) => {
+                return interceptor.response(...args)
+            },
+            (error) => {
+                if (interceptor.responseError) {
+                    return interceptor.responseError(error)
                 }
-            )
-        })
+                return defaultError(error)
+            }
+        )
+    })
 
-        return _axios
-    }
-    return _httpClient
+    return _axios
 }
