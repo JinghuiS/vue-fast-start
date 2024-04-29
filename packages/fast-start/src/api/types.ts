@@ -1,3 +1,4 @@
+import type { AxiosInstance } from "axios"
 import type { HTTPClient } from "./http/request"
 
 export type Identifier = string | number
@@ -46,8 +47,7 @@ export type DataProvider<ResourceType extends string = string> = {
         resource: ResourceType,
         params: DeleteParams<RecordType>
     ) => Promise<DeleteResult<RecordType>>
-
-    httpClient: HTTPClient
+    httpClient?: AxiosInstance
     [key: string]: any
 }
 

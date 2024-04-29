@@ -16,6 +16,5 @@ export const defaultDataProvider: DataProvider = {
     getMany: () => Promise.resolve({ data: [] }), // avoids adding a context in tests
     getManyReference: () => Promise.resolve({ data: [], total: 0 }), // avoids adding a context in tests
     getOne: () => Promise.resolve({ data: null } as any), // avoids adding a context in tests
-    update: () => Promise.resolve({ data: null } as any), // avoids adding a context in tests
-    httpClient: httpClient
+    update: () => Promise.resolve({ data: null } as any) // avoids adding a context in tests
 }
