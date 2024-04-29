@@ -64,7 +64,7 @@
     ],
     "scripts": {
         "dev": "vite",
-        "build": "rimraf dist && vue-tsc -p tsconfig.esm.json  && node build.cjs  && vite build --emptyOutDir false",
+        "build": "rimraf dist && vite build --emptyOutDir false && node build.cjs ",
         "preview": "vite preview"
     },
     "style": "dist/style.css",
@@ -82,13 +82,12 @@
     },
     "dependencies": {
         "@fast-start/control-flow": "workspace:^",
-        "@types/lodash-es": "^4.17.12",
         "@vueuse/core": "^10.9.0",
         "@vueuse/router": "^10.9.0",
         "@vueuse/shared": "^10.9.0",
         "axios": "^1.6.8",
         "element-plus": "^2.6.3",
-        "lodash-es": "^4.17.21",
+        "lodash-unified": "^1.0.3",
         "overlayscrollbars": "^2.7.0",
         "overlayscrollbars-vue": "^0.5.9",
         "qs": "^6.12.1",

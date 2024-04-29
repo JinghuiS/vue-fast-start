@@ -12,6 +12,7 @@
         "./**/__test__"
     ],
     "compilerOptions": {
+        // "baseUrl": ".",
         "emitDeclarationOnly": true,
         "declaration": true,
         "declarationDir": "dist/es",
@@ -23,7 +24,12 @@
         "types": ["vite/client", "node"],
         "noImplicitAny": false,
         // preserveSymlinks: true,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "paths": {
+            // "element-plus": ["node_modules/element-plus"],
+            "lodash-unified": ["node_modules/lodash-unified"]
+            // "*": ["node_modules/*"]
+        }
         // noImplicitAny: false
     },
     "include": ["./src/**/*.ts", "./src/**/*.d.ts", "./src/**/*.vue"]

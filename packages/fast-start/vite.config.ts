@@ -1,6 +1,8 @@
 import { defineConfig, build } from "vite"
 import vue from "@vitejs/plugin-vue"
 import vueJsx from "@vitejs/plugin-vue-jsx"
+import dts from "vite-plugin-dts"
+
 import * as path from "path"
 
 export default defineConfig({
@@ -28,6 +30,10 @@ export default defineConfig({
         }
     },
     plugins: [
+        dts({
+            outDir: "dist/es",
+            tsconfigPath: path.resolve(__dirname, "tsconfig.esm.json")
+        }),
         vue(),
         vueJsx({
             // options are passed on to @vue/babel-plugin-jsx

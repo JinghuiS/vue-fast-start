@@ -67,7 +67,6 @@ const _data = computed(() => props.tableData || data.value)
 
 const handlePageChange = () => {
     execute()
-    //@ts-ignore
     setFilterValues(listParams.value)
 }
 
