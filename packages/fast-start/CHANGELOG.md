@@ -1,5 +1,11 @@
 # @fast-start/core
 
+## 0.6.4
+
+### Patch Changes
+
+-   fix FsDataTable
+
 ## 0.6.3
 
 ### Patch Changes
