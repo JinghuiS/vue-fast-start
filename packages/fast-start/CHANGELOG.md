@@ -1,5 +1,12 @@
 # @fast-start/core
 
+## 0.7.0
+
+### Minor Changes
+
+-   add FsData
+    change useCreate useDelete useUpdate useGetOne
+
 ## 0.6.4
 
 ### Patch Changes
