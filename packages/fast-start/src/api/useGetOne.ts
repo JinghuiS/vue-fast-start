@@ -4,7 +4,7 @@ import { useHttp } from "./useHttp"
 
 export const useGetOne = <RecordType extends BasicRecord = any>(
     resource: string,
-    immediate = false
+    immediate = true
 ) => {
     const { getOne } = useDataProviderContext()
 

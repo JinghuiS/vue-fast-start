@@ -45,7 +45,7 @@ export type DataProvider<ResourceType extends string = string> = {
 
     deleteOne: <RecordType extends BasicRecord = any>(
         resource: ResourceType,
-        params: DeleteParams<RecordType>
+        params: DeleteParams
     ) => Promise<DeleteResult<RecordType>>
     httpClient?: AxiosInstance
     [key: string]: any

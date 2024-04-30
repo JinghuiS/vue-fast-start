@@ -1,20 +1,16 @@
 import { useDataProviderContext } from "../context/data-provider"
+import { useTransition } from "../hooks"
 import { BasicRecord, UpdateParams } from "./types"
-import { useHttp } from "./useHttp"
 
-export const useUpdate = <RecordType extends BasicRecord = any>(
-    resource: string,
-    immediate = false
-) => {
+export const useUpdate = <RecordType extends BasicRecord = any>(resource: string) => {
     const { update } = useDataProviderContext()
-    const result = useHttp({
-        immediate: immediate,
-        queryFn: (params: UpdateParams<any>) => {
-            return update<RecordType>(resource, params)
-        }
-    })
+    const { start, isLoading } = useTransition()
 
-    const sendUpdate = result.execute<UpdateParams<any>>
+    const sendUpdate = async <Req extends BasicRecord = RecordType>(
+        params: UpdateParams<RecordType>
+    ) => {
+        return await start(() => update<Req>(resource, params))
+    }
 
-    return { ...result, sendUpdate }
+    return { isLoading, sendUpdate }
 }

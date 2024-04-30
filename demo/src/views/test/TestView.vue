@@ -5,7 +5,8 @@ import {
     useFsForm,
     useModal,
     useFsDataTable,
-    FsTableActionColumn
+    FsTableActionColumn,
+    FsData
 } from "@fast-start/core"
 import { If } from "@fast-start/control-flow"
 
@@ -16,6 +17,7 @@ import { toTypedSchema } from "@vee-validate/valibot"
 import Modal from "./Modal.vue"
 import { ref } from "vue"
 import { onMounted } from "vue"
+import { useFsData } from "@fast-start/core"
 
 const modal = useModal(Modal)
 const validationSchema = object(
@@ -35,8 +37,6 @@ const veeValidationSchema = toTypedSchema(validationSchema)
 
 const [fsForm] = useFsForm<Input<typeof validationSchema>>()
 
-const [fsDataTable] = useFsDataTable()
-
 const check = ref([
     {
         id: 1
@@ -45,9 +45,6 @@ const check = ref([
         id: 5
     }
 ])
-onMounted(() => {
-    fsDataTable.value.toggleSelection(check.value)
-})
 
 const show = () => {
     modal
@@ -65,10 +62,20 @@ const aclList = ref({
 })
 
 const request = () => {
-    return Promise.resolve({
-        data: [{ id: 1, name: 1 }],
-        total: 1
+    return new Promise<{ data: any; total: number }>((rs) => {
+        setTimeout(() => {
+            rs({
+                data: [{ id: 1, name: 1 }],
+                total: 1
+            })
+        }, 1000)
     })
+}
+
+const [fsData] = useFsData()
+
+const change = () => {
+    fsData.value.reload()
 }
 </script>
 
@@ -78,7 +85,7 @@ const request = () => {
     </ElButton>
 
     <ElButton v-acl="aclList.acl" @click="show">测试</ElButton>
-    <ElButton v-acl="aclList.acl1" @click="show">测试11</ElButton>
+    <ElButton v-acl="aclList.acl1" @click="change">测试11</ElButton>
     <FsForm
         ref="fsForm"
         label-position="top"
@@ -95,9 +102,10 @@ const request = () => {
         </If>
     </FsForm>
 
-    <FsDataTable :request="request" ref="fsDataTable">
-        <ElTableColumn reserve-selection type="selection" width="55" />
-        <ElTableColumn prop="name" label="1Date" />
-        <FsTableActionColumn width="150px" />
-    </FsDataTable>
+    <FsData ref="fsData" :request="request" v-slot="{ data, loading }">
+        <el-table border :data="data" row-key="id" v-loading="loading">
+            <ElTableColumn reserve-selection type="selection" width="55" />
+            <ElTableColumn prop="name" label="1Date" />
+        </el-table>
+    </FsData>
 </template>

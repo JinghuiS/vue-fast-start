@@ -5,7 +5,7 @@ import { useResourceContext } from "../../context/resource"
 import { useFastStartContext } from "../../context/fast-start"
 import { computed, ref, shallowRef, type Ref } from "vue"
 import { useUrlState } from "../../hooks/useUrlState"
-import { watch } from "vue"
+
 import { readonly } from "vue"
 import { createDataProviderProvider, useDataProviderContext } from "../../context/data-provider"
 import { createFsDataTableProvider } from "../../context/fs-table"
@@ -75,7 +75,7 @@ const setFilter = (filter: any) => {
 }
 
 const handleSelectionChange = (val: any[]) => {
-    // multipleSelection.value = val
+    multipleSelection.value = val
 }
 
 const clearSelection = () => {

@@ -8,7 +8,7 @@ import {
     FsForm,
     FsFormItem,
     FsLayout,
-    FsTableActionColumn
+    FsData
 } from "./components"
 import { If, Switch, Match, For } from "@fast-start/control-flow"
 import type { App } from "vue"
@@ -30,14 +30,11 @@ export function install(app: App) {
         Switch,
         Match,
         For,
-
         FsDialog,
         FsPopupFooter,
         FsDataTable,
-        FsTableActionColumn,
-
+        FsData,
         FsResource,
-
         FsForm,
         FsFormItem
     ]
