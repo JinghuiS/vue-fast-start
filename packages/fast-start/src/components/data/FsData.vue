@@ -9,12 +9,12 @@ import { useGetList } from "../../api"
 
 const props = withDefaults(
     defineProps<{
-        pagination?: {
-            page?: number
-            perPage?: number
-            show?: boolean
-            layout?: string
-        }
+        pagination?: Partial<{
+            page: number
+            perPage: number
+            show: boolean
+            layout: string
+        }>
         immediate?: boolean
         request?: DataProvider["getList"]
     }>(),

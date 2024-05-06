@@ -55,7 +55,7 @@ const takeOverChild = () => {
     return fieldComp
 }
 
-const filed = takeOverChild()
+const filed = computed(() => takeOverChild())
 </script>
 <template>
     <ElFormItem
