@@ -4,30 +4,11 @@ import { useForm, type FormOptions } from "vee-validate"
 import { createFormProvider } from "../../context/form"
 import { computed } from "vue"
 import { If } from "@fast-start/control-flow"
+import { FsFormPropsWithEl } from "."
 
 defineOptions({
     name: "FsForm"
 })
-
-interface FsFormLayoutProps {
-    gutter?: number
-    span?: number
-    offset?: number
-    push?: number
-    pull?: number
-    xs?: number
-    sm?: number
-    md?: number
-    lg?: number
-    xl?: number
-}
-
-interface FsFormProps extends FormOptions<any> {
-    row?: boolean
-    layout?: Partial<FsFormLayoutProps>
-}
-
-type FsFormPropsWithEl = FsFormProps & Partial<FormProps>
 
 const props = defineProps<FsFormPropsWithEl>()
 const veForm = useForm(props)
@@ -52,12 +33,16 @@ const elFormProps = computed<Partial<FormProps>>(() => {
         scrollIntoViewOptions: props.scrollIntoViewOptions
     }
 })
+
+const gutter = computed(() => {
+    return props.layout?.gutter || 0
+})
 </script>
 
 <template>
     <ElForm v-bind="elFormProps">
         <If :when="row">
-            <ElRow :gutter="layout?.gutter">
+            <ElRow :gutter="gutter">
                 <slot v-bind="veForm" />
             </ElRow>
 

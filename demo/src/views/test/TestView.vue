@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FsForm, FsFormItem, useFsForm, useModal, FsData } from "@fast-start/core"
+import { FsForm, FsFormItem, useModal, FsData, FsSearchForm, useFsForm } from "@fast-start/core"
 import { If } from "@fast-start/control-flow"
 
 import { ElTableColumn, ElButton, ElInput } from "element-plus"
@@ -12,22 +12,16 @@ import { onMounted } from "vue"
 import { useFsData } from "@fast-start/core"
 
 const modal = useModal(Modal)
-const validationSchema = object(
-    {
-        test: string("请填写", [minLength(1, "必须填写")]),
-        name: nullish(string())
-    },
-    [
-        forward(
-            custom((val) => val.test === val.name, "名字和测试名字不相同"),
-            ["name"]
-        )
-    ]
-)
-
+const validationSchema = object({
+    test: string("请填写", [minLength(1, "必须填写")]),
+    name: nullish(string()),
+    test1: string("请填写", [minLength(1, "必须填写")]),
+    test2: nullish(string()),
+    test3: nullish(string()),
+    test4: nullish(string())
+})
+const [] = useFsForm()
 const veeValidationSchema = toTypedSchema(validationSchema)
-
-const [fsForm] = useFsForm<Input<typeof validationSchema>>()
 
 const check = ref([
     {
@@ -63,41 +57,26 @@ const request = () => {
         }, 1000)
     })
 }
-
-const [fsData] = useFsData()
-
-const change = () => {
-    fsData.value.reload()
-}
 </script>
 
 <template>
-    <ElButton @click="aclList.acl1 = aclList.acl1 === 'test' ? 'test1' : 'test'"
-        >展示 acl1
-    </ElButton>
-
-    <ElButton v-acl="aclList.acl" @click="show">测试</ElButton>
-    <ElButton v-acl="aclList.acl1" @click="change">测试11</ElButton>
-    <FsForm
-        :layout="{
-            span: 12,
-            gutter: 8
-        }"
-        row
-        ref="fsForm"
-        label-position="top"
-        :validation-schema="veeValidationSchema"
-        v-slot="{ values }"
-    >
+    <FsSearchForm label-position="left" :validation-schema="veeValidationSchema">
         <FsFormItem required label="测试" prop="test">
             <ElInput />
         </FsFormItem>
-        <If :when="values.test">
-            <FsFormItem label="名字" prop="name">
-                <ElInput />
-            </FsFormItem>
-        </If>
-    </FsForm>
+        <FsFormItem required label="测试1" prop="test1">
+            <ElInput />
+        </FsFormItem>
+        <FsFormItem required label="测试2" prop="test2">
+            <ElInput />
+        </FsFormItem>
+        <FsFormItem required label="测试3" prop="test3">
+            <ElInput />
+        </FsFormItem>
+        <FsFormItem required label="测试4" prop="test4">
+            <ElInput />
+        </FsFormItem>
+    </FsSearchForm>
 
     <FsData ref="fsData" :request="request" v-slot="{ data, loading }">
         <el-table border :data="data" row-key="id" v-loading="loading">

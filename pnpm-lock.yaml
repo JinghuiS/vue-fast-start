@@ -121,6 +121,9 @@ importers:
 
   packages/fast-start:
     dependencies:
+      '@element-plus/icons-vue':
+        specifier: ^2.3.1
+        version: 2.3.1(vue@3.4.25(typescript@5.4.3))
       '@fast-start/control-flow':
         specifier: workspace:^
         version: link:../fast-start-control-flow
