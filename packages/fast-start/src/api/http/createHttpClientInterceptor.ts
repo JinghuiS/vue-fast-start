@@ -7,7 +7,7 @@ import type {
 import { type HttpOptions, httpClient } from "./request"
 
 export interface HttpResponse<T = any> extends AxiosResponse<T> {}
-export type HttpRequest<D = any> = AxiosRequestConfig<D>
+export type HttpRequest<D = any> = InternalAxiosRequestConfig<D>
 
 export interface HttpClientInterceptor {
     request(
