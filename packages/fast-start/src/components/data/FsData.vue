@@ -6,6 +6,7 @@ import { DataProvider } from "../../api/types"
 import { createDataProviderProvider, useDataProviderContext } from "../../context/data-provider"
 import { useUrlState } from "../../hooks"
 import { useGetList } from "../../api"
+import { createFsDataProvider } from "../../context/fs-data"
 
 const props = withDefaults(
     defineProps<{
@@ -17,6 +18,7 @@ const props = withDefaults(
         }>
         immediate?: boolean
         request?: DataProvider["getList"]
+        rowKey?: string
     }>(),
     {
         immediate: true,
@@ -67,6 +69,7 @@ const { data, total, isLoading, execute } = useGetList(
     props.immediate
 )
 
+const _rowKey = computed(() => props.rowKey || fastStartContext.rowKey)
 const _data = computed(() => data.value)
 
 const handlePageChange = () => {
@@ -79,13 +82,23 @@ const setFilter = (_filter: any) => {
     setFilterValues(listParams.value)
 }
 
+createFsDataProvider({
+    loading: isLoading,
+    data: _data,
+    filter: filter,
+    rowKey: _rowKey.value,
+    setFilter,
+    reload: handlePageChange
+})
+
 defineExpose({
     data: _data,
     loading: isLoading,
     pagination: _pagination,
     filter,
     setFilter,
-    reload: handlePageChange
+    reload: handlePageChange,
+    rowKey: _rowKey
 })
 </script>
 
@@ -98,6 +111,7 @@ defineExpose({
         :default-filter="filter"
         :set-filter="setFilter"
         :pagination="pagination"
+        :row-key="_rowKey"
     />
 
     <If :when="pagination?.show">

@@ -1,4 +1,4 @@
-import FsDataTable from "./FsDataTable.vue"
+import FsTableDelete from "./components/actions/FsTableDelete.vue"
 // import FsTableActionColumn from "./components/actions/FsTableActionColumn.vue"
-export * from "./useFsDataTable"
-export { FsDataTable }
+
+export { FsTableDelete }

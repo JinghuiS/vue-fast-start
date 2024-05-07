@@ -4,7 +4,7 @@ export type FsDataInstance<T> = {
     setFilter: (filter: any) => void
     reload: () => void
     filter: Readonly<Ref<any>>
-    rowKey: string
+    rowKey?: string
     loading: Ref<boolean>
     data: Ref<T>
 }
