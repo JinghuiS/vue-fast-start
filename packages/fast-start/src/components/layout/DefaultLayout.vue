@@ -8,7 +8,9 @@ import {} from "./consts"
 </script>
 
 <template>
-    <Header />
+    <Header>
+        <slot name="header" />
+    </Header>
     <ElContainer>
         <SideBar />
         <Main />
