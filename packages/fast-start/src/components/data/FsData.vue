@@ -11,10 +11,10 @@ import { createFsDataProvider } from "../../context/fs-data"
 const props = withDefaults(
     defineProps<{
         pagination?: Partial<{
-            page: number
-            perPage: number
-            show: boolean
-            layout: string
+            page?: number
+            perPage?: number
+            show?: boolean
+            layout?: string
         }>
         immediate?: boolean
         request?: DataProvider["getList"]

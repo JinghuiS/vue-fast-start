@@ -1,18 +1,37 @@
 <script setup lang="ts">
-import { ElForm, FormProps } from "element-plus"
+import { ElForm, ElRow, FormProps } from "element-plus"
 import { useForm, type FormOptions } from "vee-validate"
 import { createFormProvider } from "../../context/form"
 import { computed } from "vue"
+import { If } from "@fast-start/control-flow"
+
 defineOptions({
     name: "FsForm"
 })
-interface FsFormProps extends FormOptions<any> {}
+
+interface FsFormLayoutProps {
+    gutter?: number
+    span?: number
+    offset?: number
+    push?: number
+    pull?: number
+    xs?: number
+    sm?: number
+    md?: number
+    lg?: number
+    xl?: number
+}
+
+interface FsFormProps extends FormOptions<any> {
+    row?: boolean
+    layout?: Partial<FsFormLayoutProps>
+}
 
 type FsFormPropsWithEl = FsFormProps & Partial<FormProps>
 
 const props = defineProps<FsFormPropsWithEl>()
 const veForm = useForm(props)
-createFormProvider(veForm)
+createFormProvider({ ...veForm, row: props.row, layout: props.layout })
 defineExpose({ ...veForm })
 
 const elFormProps = computed<Partial<FormProps>>(() => {
@@ -37,6 +56,14 @@ const elFormProps = computed<Partial<FormProps>>(() => {
 
 <template>
     <ElForm v-bind="elFormProps">
-        <slot v-bind="veForm" />
+        <If :when="row">
+            <ElRow :gutter="layout?.gutter">
+                <slot v-bind="veForm" />
+            </ElRow>
+
+            <template #fallback>
+                <slot v-bind="veForm" />
+            </template>
+        </If>
     </ElForm>
 </template>

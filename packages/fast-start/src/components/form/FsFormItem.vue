@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { ElFormItem, type FormItemProps } from "element-plus"
+import { ElCol, ElFormItem, type FormItemProps } from "element-plus"
 import { useFormContext } from "../../context/form"
 import { type InputBindsConfig } from "vee-validate"
+
 import { computed, useSlots } from "vue"
+import { If } from "@fast-start/control-flow"
 defineOptions({
     name: "FsFormItem",
     inheritAttrs: true
@@ -10,6 +12,15 @@ defineOptions({
 
 interface FsFormItemProps extends Partial<FormItemProps> {
     prop: string
+    span?: number
+    offset?: number
+    push?: number
+    pull?: number
+    xs?: number
+    sm?: number
+    md?: number
+    lg?: number
+    xl?: number
 }
 
 const props = defineProps<FsFormItemProps>()
@@ -55,17 +66,48 @@ const takeOverChild = () => {
     return fieldComp
 }
 
+const colProps = computed(() => {
+    return {
+        span: props.span || formContext?.layout?.span,
+        offset: props.offset || formContext?.layout?.offset,
+        push: props.push || formContext?.layout?.push,
+        pull: props.pull || formContext?.layout?.pull,
+        xs: props.xs || formContext?.layout?.xs,
+        sm: props.sm || formContext?.layout?.sm,
+        md: props.md || formContext?.layout?.md,
+        lg: props.lg || formContext?.layout?.lg,
+        xl: props.xl || formContext?.layout?.xl
+    }
+})
+
 const filed = computed(() => takeOverChild())
 </script>
 <template>
-    <ElFormItem
-        :label="label"
-        :label-width="labelWidth"
-        :size="size"
-        :validate-status="validateStatus"
-        :required="required"
-        v-bind="config"
-    >
-        <component :is="filed" v-model="value" />
-    </ElFormItem>
+    <If :when="formContext?.row">
+        <ElCol v-bind="colProps">
+            <ElFormItem
+                :label="label"
+                :label-width="labelWidth"
+                :size="size"
+                :validate-status="validateStatus"
+                :required="required"
+                v-bind="config"
+            >
+                <component :is="filed" v-model="value" />
+            </ElFormItem>
+        </ElCol>
+
+        <template #fallback>
+            <ElFormItem
+                :label="label"
+                :label-width="labelWidth"
+                :size="size"
+                :validate-status="validateStatus"
+                :required="required"
+                v-bind="config"
+            >
+                <component :is="filed" v-model="value" />
+            </ElFormItem>
+        </template>
+    </If>
 </template>

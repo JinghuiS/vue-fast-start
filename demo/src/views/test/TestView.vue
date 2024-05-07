@@ -1,13 +1,5 @@
 <script setup lang="ts">
-import {
-    FsForm,
-    FsFormItem,
-    useFsForm,
-    useModal,
-    useFsDataTable,
-    FsTableActionColumn,
-    FsData
-} from "@fast-start/core"
+import { FsForm, FsFormItem, useFsForm, useModal, FsData } from "@fast-start/core"
 import { If } from "@fast-start/control-flow"
 
 import { ElTableColumn, ElButton, ElInput } from "element-plus"
@@ -87,6 +79,11 @@ const change = () => {
     <ElButton v-acl="aclList.acl" @click="show">测试</ElButton>
     <ElButton v-acl="aclList.acl1" @click="change">测试11</ElButton>
     <FsForm
+        :layout="{
+            span: 12,
+            gutter: 8
+        }"
+        row
         ref="fsForm"
         label-position="top"
         :validation-schema="veeValidationSchema"
