@@ -3,7 +3,7 @@ declare module "vue" {
         FastStars: typeof FastStars
         FsDialog: typeof import("@fast-start/core")["FsDialog"]
         FsPopupFooter: typeof import("@fast-start/core")["FsPopupFooter"]
-        FsDataTable: typeof import("@fast-start/core")["FsDataTable"]
+        FsTableDelete: typeof import("@fast-start/core")["FsTableDelete"]
         FsResource: typeof import("@fast-start/core")["FsResource"]
         FsForm: typeof import("@fast-start/core")["FsForm"]
         FsFormItem: typeof import("@fast-start/core")["FsFormItem"]
