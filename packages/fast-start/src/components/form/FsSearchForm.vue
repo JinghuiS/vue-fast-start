@@ -8,14 +8,16 @@ import FsForm from "./FsForm.vue"
 import { ElForm, ElFormItem, type ElButton, type FormProps } from "element-plus"
 import { useFsForm } from "./useFsForm"
 import { FsFormPropsWithEl } from "."
+import { watch } from "vue"
+import { onMounted } from "vue"
 defineOptions({
     name: "FsSearchForm"
 })
 interface FsSearchFormProps extends FsFormPropsWithEl {
-    loading: boolean
+    loading?: boolean
 }
 
-defineProps<FsSearchFormProps>()
+const props = defineProps<FsSearchFormProps>()
 
 const emits = defineEmits<{
     search: [values: any]
@@ -39,24 +41,20 @@ const multipleRows = computed(() => {
     if (!Array.isArray(children)) {
         children = [children]
     }
-    console.log(
-        cols[(breakpoints.active().value as keyof typeof cols) || "sm"],
-        children.length >= 24 / cols[(breakpoints.active().value as keyof typeof cols) || "sm"]
-    )
 
     return children.length >= 24 / cols[(breakpoints.active().value as keyof typeof cols) || "sm"]
 })
-
-const [fsForm] = useFsForm<any>()
 
 const resetButtonStyle = {
     marginLeft: "18px",
     marginTop: 0
 }
 
+const [fsForm] = useFsForm<any>()
+
 function search() {
     fsForm.value?.validate().then((res) => {
-        emits("search", res)
+        emits("search", res.values)
     })
 }
 
@@ -65,7 +63,6 @@ function reset() {
     emits("reset", fsForm.value?.values)
 }
 
-// defineExpose({ ...fsForm })
 defineExpose({ ...fsForm.value })
 </script>
 <template>
@@ -93,7 +90,7 @@ defineExpose({ ...fsForm.value })
             }"
         >
             <ElButton
-                v-loading="loading"
+                :loading="loading"
                 :icon="Search"
                 type="primary"
                 aria-label="搜索"
@@ -101,7 +98,7 @@ defineExpose({ ...fsForm.value })
                 >搜索</ElButton
             >
             <ElButton
-                v-loading="loading"
+                :loading="loading"
                 :icon="Filter"
                 :style="multipleRows ? {} : resetButtonStyle"
                 @click="reset"
@@ -127,7 +124,6 @@ defineExpose({ ...fsForm.value })
 
 .fast-start-search-form-right-buttons {
     margin-left: 18px;
-    width: 180px;
     text-align: center;
     padding-left: 20px;
     border-left: 1px dashed var(--el-border-color-lighter);
