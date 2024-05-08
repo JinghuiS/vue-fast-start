@@ -1,6 +1,6 @@
 declare module "vue" {
     export interface GlobalComponents {
-        FastStars: typeof FastStars
+        FastStar: typeof import("@fast-start/core")["FastStar"]
         FsDialog: typeof import("@fast-start/core")["FsDialog"]
         FsPopupFooter: typeof import("@fast-start/core")["FsPopupFooter"]
         FsTableDelete: typeof import("@fast-start/core")["FsTableDelete"]

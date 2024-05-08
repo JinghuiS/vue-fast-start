@@ -1,3 +1,3 @@
-import FastStars from "./FastStars.vue"
+import FastStar from "./FastStar.vue"
 
-export { FastStars }
+export { FastStar }

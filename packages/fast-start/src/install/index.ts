@@ -1,5 +1,5 @@
 import {
-    FastStars,
+    FastStar,
     FsDialog,
     FsPopupFooter,
     FsTableDelete,
@@ -26,7 +26,7 @@ export function install(app: App, options: FastStartCoreInstallOptions = {}) {
     }
 
     const FsComponents = [
-        FastStars,
+        FastStar,
         FsLayout,
         If,
         Switch,

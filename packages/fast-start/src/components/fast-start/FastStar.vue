@@ -7,8 +7,9 @@ import { type FastStarsProps, createFastStartProvider } from "../../context/fast
 import BodyOverlayScrollbars from "../BodyOverlayScrollbars.vue"
 import { onMounted, watch } from "vue"
 import { useMenuStore } from "../../store/menu"
+import { createDataProviderProvider } from "../../context"
 defineOptions({
-    name: "FastStars"
+    name: "FastStar"
 })
 
 const props = withDefaults(defineProps<FastStarsProps>(), {
@@ -25,7 +26,9 @@ if (props.useTheme) {
 const { setMenu } = useMenuStore()
 
 createFastStartProvider(props)
-
+if (props.dataProvider) {
+    createDataProviderProvider({ ...props.dataProvider, rowKey: props.rowKey })
+}
 onMounted(() => {
     if (props.menu) {
         setMenu(props.menu)
