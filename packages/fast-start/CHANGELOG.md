@@ -5,14 +5,14 @@
 ### Minor Changes
 
 -   feat: 🎸 (core/install) add FsSearchForm install
-    feat: 🎸 (core/FsSearchForm) add button loading
-    feat: 🎸 (core/FsLayout) header slot
-    fix: 🐛 (core/HttpRequest) fix HttpRequest type
-    feat: 🎸 add FsSearchForm
-    feat: 🎸 add Form Layout
-    feat: 🎸 add FsTableDelete
-    feat: 🎸 add FsDataContext
-    refactor: 💡 delete FsDataTable
+-   feat: 🎸 (core/FsSearchForm) add button loading
+-   feat: 🎸 (core/FsLayout) header slot
+-   fix: 🐛 (core/HttpRequest) fix HttpRequest type
+-   feat: 🎸 add FsSearchForm
+-   feat: 🎸 add Form Layout
+-   feat: 🎸 add FsTableDelete
+-   feat: 🎸 add FsDataContext
+-   refactor: 💡 delete FsDataTable
 
 ## 0.7.1
 
@@ -56,29 +56,29 @@
 ### Minor Changes
 
 -   add FsAuthProvider
-    add useTransition
-    add FsDataTable request props
+-   add useTransition
+-   add FsDataTable request props
 
 ## 0.5.0
 
 ### Minor Changes
 
 -   add useHttp
-    add useGetList
-    add useUpdate
-    add useDelete
-    add useGetOne
-    add useCurd
-    change resource
+-   add useGetList
+-   add useUpdate
+-   add useDelete
+-   add useGetOne
+-   add useCurd
+-   change resource
 
 ## 0.4.0
 
 ### Minor Changes
 
 -   add layout
-    add useFsTable hook
-    add FsDialg
-    add acl
+-   add useFsTable hook
+-   add FsDialg
+-   add acl
 
 ## 0.3.1
 
