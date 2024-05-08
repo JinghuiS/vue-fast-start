@@ -1,6 +1,6 @@
 import "overlayscrollbars/styles/overlayscrollbars.css"
 import { install } from "./install"
-
+export * from "./context"
 export * from "./hooks"
 export * from "./api"
 export * from "./components"

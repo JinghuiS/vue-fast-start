@@ -73,9 +73,6 @@ const request = () => {
         <FsFormItem required label="测试3" prop="test3">
             <ElInput />
         </FsFormItem>
-        <FsFormItem required label="测试4" prop="test4">
-            <ElInput />
-        </FsFormItem>
     </FsSearchForm>
 
     <FsData ref="fsData" :request="request" v-slot="{ data, loading }">

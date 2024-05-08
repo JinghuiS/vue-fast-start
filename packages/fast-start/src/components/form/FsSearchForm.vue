@@ -11,8 +11,11 @@ import { FsFormPropsWithEl } from "."
 defineOptions({
     name: "FsSearchForm"
 })
+interface FsSearchFormProps extends FsFormPropsWithEl {
+    loading: boolean
+}
 
-defineProps<FsFormPropsWithEl>()
+defineProps<FsSearchFormProps>()
 
 const emits = defineEmits<{
     search: [values: any]
@@ -36,7 +39,12 @@ const multipleRows = computed(() => {
     if (!Array.isArray(children)) {
         children = [children]
     }
-    return children.length > cols[(breakpoints.active().value as keyof typeof cols) || "sm"]
+    console.log(
+        cols[(breakpoints.active().value as keyof typeof cols) || "sm"],
+        children.length >= 24 / cols[(breakpoints.active().value as keyof typeof cols) || "sm"]
+    )
+
+    return children.length >= 24 / cols[(breakpoints.active().value as keyof typeof cols) || "sm"]
 })
 
 const [fsForm] = useFsForm<any>()
@@ -79,12 +87,24 @@ defineExpose({ ...fsForm.value })
 
         <div
             class="fast-start-search-form-right-buttons"
-            :style="{ display: multipleRows ? 'flex' : 'block', flexDirection: 'column' }"
+            :style="{
+                display: 'flex',
+                flexDirection: multipleRows ? 'column' : 'row'
+            }"
         >
-            <ElButton :icon="Search" type="primary" aria-label="搜索" @click="search"
+            <ElButton
+                v-loading="loading"
+                :icon="Search"
+                type="primary"
+                aria-label="搜索"
+                @click="search"
                 >搜索</ElButton
             >
-            <ElButton :icon="Filter" :style="multipleRows ? resetButtonStyle : {}" @click="reset"
+            <ElButton
+                v-loading="loading"
+                :icon="Filter"
+                :style="multipleRows ? {} : resetButtonStyle"
+                @click="reset"
                 >重置</ElButton
             >
         </div>
