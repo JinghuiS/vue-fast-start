@@ -1,5 +1,11 @@
 # @fast-start/core
 
+## 0.8.1
+
+### Patch Changes
+
+-   fix: 🐛 (core/FastStar) fix name and dataProvide
+
 ## 0.8.0
 
 ### Minor Changes

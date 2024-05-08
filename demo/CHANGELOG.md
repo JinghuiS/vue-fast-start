@@ -1,5 +1,12 @@
 # demo
 
+## 0.0.15
+
+### Patch Changes
+
+-   Updated dependencies
+    -   @fast-start/core@0.8.1
+
 ## 0.0.14
 
 ### Patch Changes
