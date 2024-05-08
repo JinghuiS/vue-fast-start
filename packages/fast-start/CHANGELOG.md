@@ -1,5 +1,19 @@
 # @fast-start/core
 
+## 0.8.0
+
+### Minor Changes
+
+-   feat: 🎸 (core/install) add FsSearchForm install
+    feat: 🎸 (core/FsSearchForm) add button loading
+    feat: 🎸 (core/FsLayout) header slot
+    fix: 🐛 (core/HttpRequest) fix HttpRequest type
+    feat: 🎸 add FsSearchForm
+    feat: 🎸 add Form Layout
+    feat: 🎸 add FsTableDelete
+    feat: 🎸 add FsDataContext
+    refactor: 💡 delete FsDataTable
+
 ## 0.7.1
 
 ### Patch Changes
