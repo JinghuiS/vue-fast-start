@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { FastStars, useMenuStore, type FSMenuType, useAclStore } from "@fast-start/core"
-
+import { dataProvider } from "./service/data-provider.service"
 import { ref } from "vue"
 type AType = "a" | "b" | "c"
 const show = ref(true)
@@ -85,7 +85,7 @@ const add = (item: AType) => {
 </script>
 
 <template>
-    <FastStars router-mode="history" title="FastStart" :menu="menu">
+    <FastStars :data-provider="dataProvider" router-mode="history" title="FastStart" :menu="menu">
         <RouterView />
     </FastStars>
 </template>
