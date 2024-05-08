@@ -1,5 +1,12 @@
 # @fast-start/core
 
+## 0.9.0
+
+### Minor Changes
+
+-   -   feat: 🎸 (core/FsData) add reset setPagination
+    -   fix: 🐛 (core/FsSearchForm) fix loading type and button style
+
 ## 0.8.2
 
 ### Patch Changes
