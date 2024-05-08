@@ -8,7 +8,7 @@ import { useRouter } from "vue-router"
 
 export const useGetList = <RecordType extends BasicRecord = any>(
     resource: string,
-    params: Partial<GetListParams> = {},
+    params: Partial<GetListParams>,
     immediate?: boolean
 ) => {
     const { pagination = { page: 1, perPage: 20 }, filter = defaultFilter } = params
@@ -20,20 +20,26 @@ export const useGetList = <RecordType extends BasicRecord = any>(
     const result = useHttp<GetListResult<RecordType>>({
         immediate: immediate,
         // queryKey: [filter, resource, pagination],
-        queryFn: () =>
-            new Promise((resolve, reject) => {
+        queryFn: (p: GetListParams) => {
+            return new Promise((resolve, reject) => {
                 dataProvider!
-                    .getList<RecordType>(resource, {
-                        pagination,
-                        filter
-                    })
+                    .getList<RecordType>(
+                        resource,
+                        p
+                            ? p
+                            : {
+                                  pagination,
+                                  filter
+                              }
+                    )
                     .then(({ data, total }) => ({
                         data,
                         total
                     }))
                     .then(resolve)
                     .catch(reject)
-            }),
+            })
+        },
         initialData: {
             data: [],
             total: 0

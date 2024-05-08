@@ -8,23 +8,25 @@ import { useUrlState } from "../../hooks"
 import { useGetList } from "../../api"
 import { createFsDataProvider } from "../../context/fs-data"
 
-const props = withDefaults(
-    defineProps<{
-        pagination?: Partial<{
-            page?: number
-            perPage?: number
-            show?: boolean
-            layout?: string
-        }>
-        immediate?: boolean
-        request?: DataProvider["getList"]
-        rowKey?: string
-    }>(),
-    {
-        immediate: true,
-        pagination: () => ({ page: 1, perPage: 10, show: true, layout: "total, prev, pager, next" })
-    }
-)
+interface PaginationType {
+    page?: number
+    perPage?: number
+    show?: boolean
+    layout?: string
+}
+
+interface FsDataProps {
+    pagination?: PaginationType
+    immediate?: boolean
+    request?: DataProvider["getList"]
+    rowKey?: string
+    defaultFilter?: Record<string, any>
+}
+
+const props = withDefaults(defineProps<FsDataProps>(), {
+    immediate: true,
+    pagination: () => ({ page: 1, perPage: 10, show: true, layout: "total, prev, pager, next" })
+})
 
 const dataProvider = useDataProviderContext()
 if (props.request) {
@@ -33,6 +35,12 @@ if (props.request) {
 
 const resourceContext = useResourceContext()
 const fastStartContext = useFastStartContext()
+
+const defaultPagination = {
+    page: props.pagination.page || 1,
+    perPage: props.pagination.perPage || 10
+}
+const defaultFilter = props.defaultFilter || {}
 
 const [filterValues, setFilterValues] = useUrlState(
     {
@@ -43,7 +51,7 @@ const [filterValues, setFilterValues] = useUrlState(
         filter: {}
     },
     {
-        nestedKey: "tableState"
+        nestedKey: resourceContext.name
     }
 )
 
@@ -72,13 +80,33 @@ const { data, total, isLoading, execute } = useGetList(
 const _rowKey = computed(() => props.rowKey || fastStartContext.rowKey)
 const _data = computed(() => data.value)
 
-const handlePageChange = () => {
-    execute()
+const reload = (page?: number) => {
+    if (page) {
+        _pagination.value.page = page
+    }
+
     setFilterValues(listParams.value)
+
+    execute(listParams.value)
 }
 
 const setFilter = (_filter: any) => {
     filter.value = _filter
+    setFilterValues(listParams.value)
+}
+
+const setPagination = (pagination: Partial<Omit<PaginationType, "show" | "layout">>) => {
+    _pagination.value = {
+        ...defaultPagination,
+        ..._pagination.value,
+        ...pagination
+    }
+    setFilterValues(listParams.value)
+}
+
+const reset = () => {
+    filter.value = defaultFilter
+    _pagination.value = { ...defaultPagination }
     setFilterValues(listParams.value)
 }
 
@@ -88,7 +116,9 @@ createFsDataProvider({
     filter: filter,
     rowKey: _rowKey.value,
     setFilter,
-    reload: handlePageChange
+    reload: reload,
+    reset,
+    setPagination
 })
 
 defineExpose({
@@ -97,8 +127,10 @@ defineExpose({
     pagination: _pagination,
     filter,
     setFilter,
-    reload: handlePageChange,
-    rowKey: _rowKey
+    reload: reload,
+    rowKey: _rowKey,
+    reset,
+    setPagination
 })
 </script>
 
@@ -107,11 +139,14 @@ defineExpose({
         :data="_data"
         :loading="isLoading"
         :total="total"
-        :reload="handlePageChange"
-        :default-filter="filter"
+        :reload="reload"
+        :default-filter="defaultFilter"
+        :filter="filter"
         :set-filter="setFilter"
         :pagination="pagination"
         :row-key="_rowKey"
+        :set-pagination="setPagination"
+        :reset="reset"
     />
 
     <If :when="pagination?.show">
@@ -119,7 +154,7 @@ defineExpose({
             <el-pagination
                 :disabled="isLoading"
                 :total="total"
-                @change="handlePageChange"
+                @change="reload"
                 v-model:current-page="_pagination.page"
                 v-model:page-size="_pagination.perPage"
                 :layout="pagination?.layout"

@@ -2,17 +2,17 @@
 import { ModalProvider } from "vue-modal-provider"
 
 import { initTheme } from "../../theme"
-import { type FastStarsProps, createFastStartProvider } from "../../context/fast-start"
+import { type FastStarProps, createFastStartProvider } from "../../context/fast-start"
 
 import BodyOverlayScrollbars from "../BodyOverlayScrollbars.vue"
 import { onMounted, watch } from "vue"
 import { useMenuStore } from "../../store/menu"
 import { createDataProviderProvider } from "../../context"
 defineOptions({
-    name: "FastStar"
+    name: "FastStart"
 })
 
-const props = withDefaults(defineProps<FastStarsProps>(), {
+const props = withDefaults(defineProps<FastStarProps>(), {
     rowKey: "id",
     useTheme: true,
     title: "Fast Start",

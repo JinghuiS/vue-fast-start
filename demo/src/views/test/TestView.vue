@@ -13,12 +13,7 @@ import { useFsData } from "@fast-start/core"
 
 const modal = useModal(Modal)
 const validationSchema = object({
-    test: string("请填写", [minLength(1, "必须填写")]),
-    name: nullish(string()),
-    test1: string("请填写", [minLength(1, "必须填写")]),
-    test2: nullish(string()),
-    test3: nullish(string()),
-    test4: nullish(string())
+    test: string("请填写", [minLength(1, "必须填写")])
 })
 const [] = useFsForm()
 const veeValidationSchema = toTypedSchema(validationSchema)
@@ -47,7 +42,8 @@ const aclList = ref({
     acl1: "test"
 })
 
-const request = () => {
+const request = (name: string, config: any) => {
+    console.log(name, config)
     return new Promise<{ data: any; total: number }>((rs) => {
         setTimeout(() => {
             rs({
@@ -57,25 +53,29 @@ const request = () => {
         }, 1000)
     })
 }
+
+const filter = (v: any) => {
+    console.log(v)
+}
 </script>
 
 <template>
-    <FsSearchForm label-position="left" :validation-schema="veeValidationSchema">
-        <FsFormItem required label="测试" prop="test">
-            <ElInput />
-        </FsFormItem>
-        <FsFormItem required label="测试1" prop="test1">
-            <ElInput />
-        </FsFormItem>
-        <FsFormItem required label="测试2" prop="test2">
-            <ElInput />
-        </FsFormItem>
-        <FsFormItem required label="测试3" prop="test3">
-            <ElInput />
-        </FsFormItem>
-    </FsSearchForm>
-
-    <FsData ref="fsData" :request="request" v-slot="{ data, loading }">
+    <FsData
+        ref="fsData"
+        :request="request"
+        v-slot="{ data, loading, setFilter, reload, defaultFilter }"
+    >
+        <FsSearchForm
+            :initial-values="defaultFilter"
+            @search="setFilter($event), reload()"
+            label-position="left"
+            :loading="loading"
+            :validation-schema="veeValidationSchema"
+        >
+            <FsFormItem required label="测试" prop="test">
+                <ElInput />
+            </FsFormItem>
+        </FsSearchForm>
         <el-table border :data="data" row-key="id" v-loading="loading">
             <ElTableColumn reserve-selection type="selection" width="55" />
             <ElTableColumn prop="name" label="1Date" />

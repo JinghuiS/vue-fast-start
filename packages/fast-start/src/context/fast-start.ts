@@ -3,7 +3,7 @@ import type { DataProvider } from "../api/types"
 import { FSMenuType } from "../store/menu"
 import { injectLocal, provideLocal } from "@vueuse/core"
 
-export type FastStarsProps = {
+export type FastStarProps = {
     title?: string
     rowKey?: string
     basename?: string
@@ -15,7 +15,7 @@ export type FastStarsProps = {
     menu?: FSMenuType[]
 }
 
-export const DEFAULT_FAST_START_CONTEXT: FastStarsProps = {
+export const DEFAULT_FAST_START_CONTEXT: FastStarProps = {
     rowKey: "id",
     title: "Fast Start",
     routerMode: "hash",
@@ -23,10 +23,10 @@ export const DEFAULT_FAST_START_CONTEXT: FastStarsProps = {
 }
 export const FAST_START_CONTEXT = Symbol("FAST_START_CONTEXT")
 
-export const createFastStartProvider = (context: FastStarsProps) => {
+export const createFastStartProvider = (context: FastStarProps) => {
     return provideLocal(FAST_START_CONTEXT, context)
 }
 
 export const useFastStartContext = () => {
-    return injectLocal<FastStarsProps>(FAST_START_CONTEXT, DEFAULT_FAST_START_CONTEXT)
+    return injectLocal<FastStarProps>(FAST_START_CONTEXT, DEFAULT_FAST_START_CONTEXT)
 }
