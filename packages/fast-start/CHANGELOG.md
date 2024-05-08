@@ -1,5 +1,11 @@
 # @fast-start/core
 
+## 0.8.2
+
+### Patch Changes
+
+-   fix FastStar name
+
 ## 0.8.1
 
 ### Patch Changes
