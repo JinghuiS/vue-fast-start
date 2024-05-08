@@ -11,9 +11,8 @@
         "preinstall": "npx only-allow pnpm",
         "build": "pnpm --filter=@fast-start/* run build",
         "change": "pnpm changeset",
-        "version": "pnpm changeset version",
         "publish": "pnpm changeset publish",
-        "chgset": "pnpm change && pnpm version",
+        "chgset": "pnpm change && pnpm changeset version",
         "build:publish": "pnpm build && pnpm clear && pnpm publish -r"
     },
     "keywords": [],
