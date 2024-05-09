@@ -5,6 +5,9 @@
     "version": "0.0.0",
     "description": "",
     "main": "index.js",
+    "publishConfig": {
+        "access": "public"
+    },
     "scripts": {
         "demo": "pnpm -F demo dev",
         "clear": "rimraf 'packages/*/{lib,node_modules}'",
@@ -13,7 +16,8 @@
         "change": "pnpm changeset",
         "publish": "pnpm changeset publish",
         "chgset": "pnpm change && pnpm changeset version",
-        "build:publish": "pnpm build && pnpm clear && pnpm publish -r"
+        "build:publish": "pnpm build && pnpm clear && pnpm publish -r",
+        "release": "pnpm build && npx changeset tag"
     },
     "keywords": [],
     "license": "MIT",
