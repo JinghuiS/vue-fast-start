@@ -17,7 +17,7 @@
         "publish": "pnpm changeset publish",
         "chgset": "pnpm change && pnpm changeset version",
         "build:publish": "pnpm build && pnpm clear && pnpm publish -r",
-        "release": "pnpm build && npx changeset tag"
+        "release": "pnpm build && pnpm changeset tag"
     },
     "keywords": [],
     "license": "MIT",
