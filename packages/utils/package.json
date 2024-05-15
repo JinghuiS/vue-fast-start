@@ -1,0 +1,12 @@
+{
+    "author": "Jinghui_S",
+    "private": true,
+    "name": "@fast-start/utils",
+    "description": "",
+    "main": "./src/index.ts",
+    "scripts": {
+        "dev": "vite",
+        "build": "rimraf dist && vite build --emptyOutDir ",
+        "preview": "vite preview"
+    }
+}
