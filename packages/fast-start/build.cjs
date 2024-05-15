@@ -1,3 +1,5 @@
+const { fileURLToPath, URL } = require("node:url")
+
 const { build } = require("vite")
 const fg = require("fast-glob")
 const vue = require("@vitejs/plugin-vue")
@@ -50,6 +52,7 @@ async function buildTask(mode) {
                     }
                 }
             },
+
             plugins: [
                 vue(),
                 vueJsx({
@@ -73,7 +76,11 @@ gulp.task("generateTypes", async function () {
     return gulp.src(`dist/es/**/*.d.ts`).pipe(gulp.dest(`dist/lib`))
 })
 
-gulp.task("compileBuild", gulp.series(["buildES", "buildLib", "generateTypes"]))
+gulp.task("moveUtilsTypes", async function () {
+    return fs.cpSync(path.resolve(__dirname, "../utils/dist"), "./utils", { recursive: true })
+})
+
+gulp.task("compileBuild", gulp.series(["buildES", "buildLib", "generateTypes", "moveUtilsTypes"]))
 
 const taskInstance = gulp.task("compileBuild")
 if (taskInstance === undefined) {

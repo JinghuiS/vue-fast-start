@@ -13,6 +13,7 @@ dist
 dist-ssr
 coverage
 *.local
+packages/fast-start/utils/
 
 /cypress/videos/
 /cypress/screenshots/
@@ -28,3 +29,5 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+docs/.vitepress/dist
+docs/.vitepress/cache

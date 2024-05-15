@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "baseUrl": "./",
         "target": "esnext",
         "useDefineForClassFields": true,
         "module": "esnext",
@@ -18,8 +19,12 @@
         "esModuleInterop": true,
         "types": ["vite/client", "node"],
         "lib": ["esnext", "dom"],
-        "noImplicitAny": false
+        "noImplicitAny": false,
+        "paths": {
+            // "@fast-start/utils": ["../utils"]
+        }
     },
+    // "include": ["../utils"],
     // "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
     "references": [{ "path": "./tsconfig.node.json" }],
     "exclude": ["node_modules", "**/*.spec.ts", "**/__test__/*", "**/__stories__/*"]

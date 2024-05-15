@@ -7,6 +7,12 @@
     "module": "dist/es/index.mjs",
     "types": "dist/es/index.d.ts",
     "type": "module",
+    "files": [
+        "dist/",
+        "utils/",
+        "CHANGELOG.md",
+        "package.json"
+    ],
     "exports": {
         ".": {
             "types": "./dist/es/index.d.ts",
@@ -64,7 +70,7 @@
     ],
     "scripts": {
         "dev": "vite",
-        "build": "rimraf dist && vite build --emptyOutDir false && node build.cjs ",
+        "build": "rimraf dist  && vite build --emptyOutDir false && node build.cjs ",
         "preview": "vite preview"
     },
     "style": "dist/style.css",
@@ -76,23 +82,23 @@
         "dist/lib/components/**/*.css"
     ],
     "peerDependencies": {
-        "element-plus": "^2.3.4",
+        "element-plus": "^2.7.2",
         "@element-plus/icons-vue": "^2.3.1",
-        "vue": "^3.4.21",
+        "vue": "^3.4.27",
         "vue-router": "4"
     },
     "dependencies": {
-        "@fast-start/control-flow": "workspace:^",
+        "@fast-start/utils": "workspace:^",
         "@vueuse/core": "^10.9.0",
         "@vueuse/router": "^10.9.0",
         "@vueuse/shared": "^10.9.0",
         "axios": "^1.6.8",
-        "element-plus": "^2.6.3",
+        "element-plus": "^2.7.2",
         "lodash-unified": "^1.0.3",
         "overlayscrollbars": "^2.7.0",
         "overlayscrollbars-vue": "^0.5.9",
         "qs": "^6.12.1",
-        "vee-validate": "^4.12.6",
+        "vee-validate": "^4.12.8",
         "vue-i18n": "9",
         "vue-modal-provider": "^0.4.1",
         "vue-router": "4"

@@ -1,3 +1,5 @@
+import { fileURLToPath, URL } from "node:url"
+
 import { defineConfig, build } from "vite"
 import vue from "@vitejs/plugin-vue"
 import vueJsx from "@vitejs/plugin-vue-jsx"
@@ -29,10 +31,21 @@ export default defineConfig({
             }
         }
     },
+    resolve: {
+        alias: {
+            "@fast-start/utils": fileURLToPath(new URL("../utils", import.meta.url))
+            // "@src": path.resolve(__dirname, "..","utils")
+        }
+    },
     plugins: [
         dts({
             outDir: "dist/es",
-            tsconfigPath: path.resolve(__dirname, "tsconfig.esm.json")
+            tsconfigPath: path.resolve(__dirname, "tsconfig.esm.json"),
+            entryRoot: "src"
+            // insertTypesEntry: true,
+            // staticImport: true
+            // rollupTypes: true,
+            // bundledPackages: ["vue", "vue-router", "element-plus"]
         }),
         vue(),
         vueJsx({

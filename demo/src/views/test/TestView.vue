@@ -64,6 +64,7 @@ const filter = (v: any) => {
         ref="fsData"
         :request="request"
         v-slot="{ data, loading, setFilter, reload, defaultFilter }"
+        :pagination="{}"
     >
         <FsSearchForm
             :initial-values="defaultFilter"

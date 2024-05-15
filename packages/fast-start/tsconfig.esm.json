@@ -25,11 +25,14 @@
         "noImplicitAny": false,
         // preserveSymlinks: true,
         "skipLibCheck": true,
+        // "strict": true,
         "paths": {
+            // "@fast-start/utils": ["../utils"]
             // "element-plus": ["node_modules/element-plus"],
             "lodash-unified": ["node_modules/lodash-unified"]
             // "*": ["node_modules/*"]
-        }
+        },
+        "moduleResolution": "Node10"
         // noImplicitAny: false
     },
     "include": ["./src/**/*.ts", "./src/**/*.d.ts", "./src/**/*.vue"]

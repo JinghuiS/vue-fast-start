@@ -7,26 +7,11 @@ import { createDataProviderProvider, useDataProviderContext } from "../../contex
 import { useUrlState } from "../../hooks"
 import { useGetList } from "../../api"
 import { createFsDataProvider } from "../../context/fs-data"
+import { PaginationType, fsDataProps, useFsDataPaginationConfig } from "./FsData"
+import { PropType } from "vue"
 
-interface PaginationType {
-    page?: number
-    perPage?: number
-    show?: boolean
-    layout?: string
-}
-
-interface FsDataProps {
-    pagination?: PaginationType
-    immediate?: boolean
-    request?: DataProvider["getList"]
-    rowKey?: string
-    defaultFilter?: Record<string, any>
-}
-
-const props = withDefaults(defineProps<FsDataProps>(), {
-    immediate: true,
-    pagination: () => ({ page: 1, perPage: 10, show: true, layout: "total, prev, pager, next" })
-})
+const props = defineProps(fsDataProps)
+const pageConfig = useFsDataPaginationConfig(props)
 
 const dataProvider = useDataProviderContext()
 if (props.request) {
@@ -37,16 +22,16 @@ const resourceContext = useResourceContext()
 const fastStartContext = useFastStartContext()
 
 const defaultPagination = {
-    page: props.pagination.page || 1,
-    perPage: props.pagination.perPage || 10
+    page: pageConfig.value.page || 1,
+    perPage: pageConfig.value.perPage || 10
 }
 const defaultFilter = props.defaultFilter || {}
 
 const [filterValues, setFilterValues] = useUrlState(
     {
         pagination: {
-            page: props.pagination.page,
-            perPage: props.pagination.perPage
+            page: pageConfig.value.page,
+            perPage: pageConfig.value.perPage
         },
         filter: {}
     },
@@ -56,8 +41,8 @@ const [filterValues, setFilterValues] = useUrlState(
 )
 
 const _pagination = ref({
-    page: Number(filterValues.pagination?.page) || props.pagination.page || 1,
-    perPage: Number(filterValues.pagination?.perPage) || props.pagination.perPage || 10
+    page: Number(filterValues.pagination?.page) || pageConfig.value.page || 1,
+    perPage: Number(filterValues.pagination?.perPage) || pageConfig.value.perPage || 10
 })
 const filter = ref(filterValues.filter || {})
 
@@ -149,7 +134,7 @@ defineExpose({
         :reset="reset"
     />
 
-    <If :when="pagination?.show">
+    <If :when="pageConfig?.show">
         <div class="fast-start-pagination">
             <el-pagination
                 :disabled="isLoading"
@@ -157,7 +142,7 @@ defineExpose({
                 @change="reload"
                 v-model:current-page="_pagination.page"
                 v-model:page-size="_pagination.perPage"
-                :layout="pagination?.layout"
+                :layout="pageConfig?.layout"
             />
         </div>
     </If>
