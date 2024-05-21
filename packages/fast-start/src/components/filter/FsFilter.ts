@@ -114,7 +114,7 @@ export const fsFilterItemProps = buildProps({
         type: definePropType<string[]>(Array),
         default: () => DEFAULT_VALUE as string[]
     }
-})
+} as const)
 export type FsFilterItemProps = ExtractPropTypes<typeof fsFilterItemProps>
 
 export type FsFilterProps = ExtractPropTypes<typeof fsFilterProps>
