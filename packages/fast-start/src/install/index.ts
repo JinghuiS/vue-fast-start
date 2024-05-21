@@ -8,7 +8,8 @@ import {
     FsFormItem,
     FsLayout,
     FsData,
-    FsSearchForm
+    FsSearchForm,
+    FsFilter
 } from "../components"
 import { If, Switch, Match, For } from "@fast-start/control-flow"
 import { App } from "vue"
@@ -39,7 +40,8 @@ export function install(app: App, options: FastStartCoreInstallOptions = {}) {
         FsResource,
         FsForm,
         FsFormItem,
-        FsSearchForm
+        FsSearchForm,
+        FsFilter
     ]
     FsComponents.map((e) => {
         if (e.name) {
